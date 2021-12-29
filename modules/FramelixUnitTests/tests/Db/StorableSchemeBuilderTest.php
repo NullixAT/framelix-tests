@@ -12,35 +12,41 @@ use Framelix\FramelixUnitTests\StorableException\TestStorableUnsupportedType;
 use Framelix\FramelixUnitTests\TestCase;
 use Throwable;
 
+use function count;
+
 final class StorableSchemeBuilderTest extends TestCase
 {
+    private MysqlStorableSchemeBuilder $builder;
+    
     public function testBuilderQueries(): void
     {
         $this->setupDatabase();
+        $this->cleanupDatabase();
         $db = Mysql::get('test');
         $schema = Storable::getStorableSchema(TestStorable2::class);
         // assert exact same schema (cached already)
         $this->assertSame($schema, Storable::getStorableSchema(TestStorable2::class));
-        $builder = new MysqlStorableSchemeBuilder($db);
+        $this->builder = new MysqlStorableSchemeBuilder($db);
         // first create all things
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         // all new queries that do not modify anything are considered safe
-        $this->assertCount(count($queries), $builder->getSafeQueries());
-        foreach ($queries as $queryData) {
-            $db->query($queryData['query']);
-        }
+        $this->assertCount(count($queries), $this->builder->getSafeQueries());
+        $this->builder->executeQueries($queries);
+        // next check should result in 0 queries
+        $queries = $this->builder->getQueries();
+        $this->assertCount(0, $queries);
         // calling the builder immediately after should not need to change anything
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         $this->assertQueryCount(0, $queries, true);
         // deleting a column and than the builder should recreate this including the index
         // 3 queries because 1x adding, 1x reordering columns and 1x creating an index
         $db->query("ALTER TABLE framelix_framelixunittests_storable_teststorable2 DROP COLUMN `createUser`");
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         // 1 of 3 is unsafe, so we have 2 safe queries
-        $this->assertCount(2, $builder->getSafeQueries());
+        $this->assertCount(2, $this->builder->getSafeQueries());
         // when having safe queries, there couldnt be any unsafe queries
         // as safe queries always need to be executed prior to generate unsafe queries correctly
-        $this->assertCount(0, $builder->getUnsafeQueries());
+        $this->assertCount(0, $this->builder->getUnsafeQueries());
         $this->assertQueryCount(3, $queries, true);
         // modifying some table data to simulate changed property behaviour
         $db->query(
@@ -51,15 +57,15 @@ final class StorableSchemeBuilderTest extends TestCase
 	DROP INDEX `selfReferenceOptional`'
         );
 
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         $this->assertQueryCount(6, $queries, true);
 
         // calling the builder immediately after should not need to change anything
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         $this->assertQueryCount(0, $queries, true);
         // droping an index and let the system recreate it
         $db->query("ALTER TABLE `framelix_framelix_storable_user` DROP INDEX `updateUser`");
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         $this->assertQueryCount(1, $queries, true);
         // adding some additional obsolete columns and tables that the builder should delete
         $db->query(
@@ -71,11 +77,11 @@ final class StorableSchemeBuilderTest extends TestCase
         // 3rd party tables are untouched by default
         $db->query('CREATE TABLE `unused_table` (`id` INT(11) NULL DEFAULT NULL)');
         // altering/deleting a existing column/table or is always unsafe
-        $queries = $builder->getSafeQueries();
+        $queries = $this->builder->getSafeQueries();
         $this->assertCount(0, $queries);
-        $queries = $builder->getUnsafeQueries();
+        $queries = $this->builder->getUnsafeQueries();
         $this->assertCount(3, $queries);
-        $queries = $builder->getQueries();
+        $queries = $this->builder->getQueries();
         $this->assertQueryCount(3, $queries, true);
     }
 
@@ -115,9 +121,7 @@ final class StorableSchemeBuilderTest extends TestCase
         }
         $this->assertCount($count, $queries);
         if ($execute) {
-            foreach ($queries as $queryData) {
-                Mysql::get('test')->query($queryData['query']);
-            }
+            $this->builder->executeQueries($queries);
         }
     }
 }

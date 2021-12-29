@@ -8,6 +8,9 @@ This repository is currently in pre-alpha, in constant changes. I develop the co
 know when there is something new to test it out. I will try to make some projects based on this framework available in
 early/mid 2022.
 
+## Requirements
+PHP 8.1+, a mysql database and composer is required to run the unit tests.
+  
 ## Setup
 
 Framelix uses git submodules. So after cloning you have to initialize the submodules.
