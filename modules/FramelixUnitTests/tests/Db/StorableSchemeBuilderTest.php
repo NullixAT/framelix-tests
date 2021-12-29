@@ -14,19 +14,9 @@ use Throwable;
 
 final class StorableSchemeBuilderTest extends TestCase
 {
-    /**
-     * Drop everything before starting the tests
-     */
-    public static function setUpBeforeClass(): void
-    {
-        $db = Mysql::get('test');
-        $db->query("DROP DATABASE `{$db->connectionConfig['database']}`");
-        $db->query("CREATE DATABASE `{$db->connectionConfig['database']}`");
-        $db->query("USE `{$db->connectionConfig['database']}`");
-    }
-
     public function testBuilderQueries(): void
     {
+        $this->setupDatabase();
         $db = Mysql::get('test');
         $schema = Storable::getStorableSchema(TestStorable2::class);
         // assert exact same schema (cached already)
