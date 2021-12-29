@@ -58,7 +58,7 @@ final class MysqlTest extends TestCase
             $db->query(
                 "CREATE TABLE `dev` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `text` VARCHAR(255) NULL COLLATE 'utf8mb4_unicode_ci',
+                `text` LONGTEXT NULL COLLATE 'utf8mb4_unicode_ci',
                 PRIMARY KEY (`id`) USING BTREE
             )
             COLLATE='utf8mb4_unicode_ci'

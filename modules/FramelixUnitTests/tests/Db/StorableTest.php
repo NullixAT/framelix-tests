@@ -95,7 +95,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test2.me',
-            $db->fetchOne("SELECT name FROM framelix_FramelixUnitTests_storable_teststorable1 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable1 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -135,7 +135,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test2.me',
-            $db->fetchOne("SELECT name FROM framelix_FramelixUnitTests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -156,7 +156,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test3.me',
-            $db->fetchOne("SELECT name FROM framelix_FramelixUnitTests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -167,7 +167,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(3);
         $this->assertSame(
             'foobar@test4.me',
-            $db->fetchOne("SELECT name FROM framelix_FramelixUnitTests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -187,7 +187,7 @@ final class StorableTest extends TestCase
         $this->assertSame(
             null,
             $db->fetchOne(
-                "SELECT name FROM framelix_FramelixUnitTests_storable_teststorable2 WHERE id = " . $storableId
+                "SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storableId
             )
         );
 
