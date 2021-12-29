@@ -39,4 +39,4 @@ jobs:
         run: |
           php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy('modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --coverage-text --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
+        run: phpunit --coverage-text --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
