@@ -33,7 +33,8 @@ Go into `Framelix` submodule folder and run `git checkout main`.
 
 Now you can work and commit in the submodule as well is outside of it.
 
-Depending on where you have made changes, you may need to 
+Depending on where you have made changes, you may need to:
 
-* Goto into `Framelix` and do `git commit -a` manually to commit the code in the submodule
-* Goto project folder and 
+1. Commit and push in this repository with default git methods
+2. Commit and push in `modules/Framework` with default git methods
+   1. After you have updated the submodule, you may need to update the submodule revision as well by doing step 1 again
