@@ -71,7 +71,7 @@ final class MysqlTest extends TestCase
             $db->query(
                 "CREATE TABLE IF NOT EXISTS `" . TestStorable2::class . "` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `text` LONGTEXT NOT NULL COLLATE 'utf8mb4_unicode_ci',
+                `text` LONGTEXT NULL COLLATE 'utf8mb4_unicode_ci',
                 PRIMARY KEY (`id`) USING BTREE
             )
             COLLATE='utf8mb4_unicode_ci'
