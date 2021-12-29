@@ -23,15 +23,11 @@ To develop in this library there are 2 modules.
 
 More about submodules here: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
-#### Submodule use
-
-* Update source:  `git pull && git submodule update --remote`. This will update the submodule as well.
-
 #### Submodule development
 Development on a submodule is not the same as default git development. A submodule is a "independent" part in this repository which need to be handled separetely.
 
 After cloning and you plan to work in the submodule as well, you have to checkout a submodule branch, eg: `main`. Update sources before checkout, if your clone is a little older.
 
-Go into `Framelix` submodule folder and run `git checkout main && git submodule update --remote --merge`.
+Go into `Framelix` submodule folder and run `git checkout main`.
 
-Now you can work in the submodule.
+Now you can work and commit in the submodule.
