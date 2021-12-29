@@ -4,3 +4,5 @@ config-editable.php
 node_modules
 .phpunit.cache
 phpunit.phar
+vendor
+composer.lock
