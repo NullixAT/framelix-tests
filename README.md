@@ -31,3 +31,8 @@ After cloning and you plan to work in the submodule as well, you have to checkou
 Go into `Framelix` submodule folder and run `git checkout main`.
 
 Now you can work and commit in the submodule.
+
+If you only have changes in the submodule, you need to update the revision of the submodule as well. Git interfaces (Like PhpStorm sometimes) will not show changes. 
+
+* Goto into `Framelix` and do `git commit -a` manually to commit the code in the submodule
+* Goto project folder and 
