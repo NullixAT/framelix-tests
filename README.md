@@ -34,7 +34,7 @@ After cloning and you plan to work in the submodule as well, you have to checkou
 
 Go into `Framelix` submodule folder and run `git checkout main && git submodule update --remote --merge`.
 
-Now you can work in the submodule. Notice that some git interfaces not provide support for submodules
+Now you can work in the submodule.
 
 
 * Update source:  `git pull && git submodule update --remote`. This will update the submodule as well.
