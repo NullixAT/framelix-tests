@@ -9,13 +9,3 @@ Config::set('database[default]', null);
 // disable system event log, it should be tested explicitely
 Config::set('systemEventLog', null);
 // check if env exist, if so, we trying to get database config from that config
-if (getenv("DB_CONNECTION") === "mysql") {
-    Config::set('database[test]', [
-        "host" => getenv("DB_HOST"),
-        "username" => getenv("DB_USERNAME"),
-        "password" => getenv("DB_PASSWORD"),
-        "database" => getenv("DB_DATABASE"),
-        "port" => getenv("DB_PORT"),
-        "socket" => ""
-    ]);
-}

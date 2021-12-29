@@ -34,9 +34,9 @@ jobs:
           php-version: '8.1'
           extensions: mbstring, exif, fileinfo, mysqli, sockets, json, curl, simplexml,zip, openssl
           coverage: xdebug
-      - name: Copy .env
+      - name: Copy Config for Github Actions
         run: |
-          php -r "file_exists('.env') || copy('.env.github', '.env');"
+          php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy(modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
       - name: Update Composer
         run: sudo composer self-update --no-interaction
       - name: Run Composer Install
