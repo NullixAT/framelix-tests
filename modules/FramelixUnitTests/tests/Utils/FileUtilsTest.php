@@ -33,6 +33,7 @@ final class FileUtilsTest extends TestCase
         );
         $this->assertFilelist(
             [
+                "modules/FramelixUnitTests/tmp/fileutils-test/.gitignore",
                 "modules/FramelixUnitTests/tmp/fileutils-test/test1",
                 "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt"
             ],
@@ -42,6 +43,7 @@ final class FileUtilsTest extends TestCase
             [
                 "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt",
                 "modules/FramelixUnitTests/tmp/fileutils-test/test1",
+                "modules/FramelixUnitTests/tmp/fileutils-test/.gitignore",
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test", sortOrder: SCANDIR_SORT_DESCENDING)
         );
