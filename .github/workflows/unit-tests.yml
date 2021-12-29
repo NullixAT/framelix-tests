@@ -36,7 +36,7 @@ jobs:
           coverage: xdebug
       - name: Copy Config for Github Actions
         run: |
-          php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy(modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
+          php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy('modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
       - name: Update Composer
         run: sudo composer self-update --no-interaction
       - name: Run Composer Install
