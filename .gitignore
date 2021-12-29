@@ -1,0 +1,7 @@
+logs
+config-editable.php
+.svn
+.idea
+node_modules
+.phpunit.cache
+phpunit.phar
