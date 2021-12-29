@@ -8,4 +8,5 @@ include __DIR__ . "/../public/index.php";
 Config::set('database[default]', null);
 // disable system event log, it should be tested explicitely
 Config::set('systemEventLog', null);
-// check if env exist, if so, we trying to get database config from that config
+// use a fixed timezone
+ini_set("date.timezone", "Europe/Berlin");

@@ -72,6 +72,7 @@ final class ZipTest extends TestCase
 
         Zip::unzip($zipCreateFile, $tmpFolder, true);
         $this->assertFilelist([
+            'modules/FramelixUnitTests/tmp/ziptest/.gitignore',
             'modules/FramelixUnitTests/tmp/ziptest/sub/test1',
             'modules/FramelixUnitTests/tmp/ziptest/sub/test1.txt',
             'modules/FramelixUnitTests/tmp/ziptest/test.zip',
