@@ -24,18 +24,10 @@ final class BufferTest extends TestCase
         $this->assertSame('123123', Buffer::getAll());
 
         Buffer::start();
-        echo "Flushme";
-        Buffer::start();
-        Buffer::flush();
-        $this->assertSame('', Buffer::getAll());
-
-        Buffer::start();
         echo 123;
         $this->assertSame('123', Buffer::get());
 
         // empty buffer
         $this->assertSame('', Buffer::get());
-        // create buffer for phpunit later on
-        ob_start();
     }
 }
