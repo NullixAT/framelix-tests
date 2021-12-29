@@ -33,7 +33,6 @@ jobs:
         with:
           php-version: '8.1'
           extensions: mbstring, exif, fileinfo, mysqli, sockets, json, curl, simplexml,zip, openssl
-          coverage: xdebug
       - name: Copy Config for Github Actions
         run: |
           php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy('modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
@@ -42,4 +41,4 @@ jobs:
       - name: Run Composer Install
         run: composer install --no-interaction
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --coverage-text --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
+        run: vendor/bin/phpunit --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
