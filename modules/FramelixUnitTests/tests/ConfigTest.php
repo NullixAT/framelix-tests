@@ -11,6 +11,7 @@ final class ConfigTest extends TestCase
         Config::$loadedModules = [];
         Config::set('modules', ["Framelix", FRAMELIX_MODULE]);
         Config::load();
+        Config::set('devMode', false);
         Config::set('float', 1.0);
         Config::set('bool', true);
         Config::set('int', 1);
