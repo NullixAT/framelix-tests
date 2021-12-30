@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "phpstan": "vendor/bin/phpstan"
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit 1G"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

@@ -57,3 +57,5 @@ jobs:
           label: CodeCoverage
           message: ${{ env.COVERAGE }}
           color: orange
+      - name: Run PhpStan Static Analysis
+        run: vendor/bin/phpstan analyse --memory-limit 1G
