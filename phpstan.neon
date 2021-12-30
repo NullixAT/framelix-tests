@@ -1,0 +1,16 @@
+parameters:
+  level: 6
+  paths:
+    - modules/Framelix/src
+  scanDirectories:
+    - modules/Framelix/vendor
+  bootstrapFiles:
+    - modules/FramelixUnitTests/public/index.php
+    - modules/Framelix/public/check-requirements.php
+  checkMissingIterableValueType: false
+  ignoreErrors:
+    - '#Unsafe usage of new static#'
+    - '#Argument of an invalid type .* supplied for foreach#'
+    - '#Call to an undefined method ReflectionType::getName#'
+    - '#Offset .*? does not exist on array#'
+    - '#Cannot unset offset .*? on array#'

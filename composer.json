@@ -1,5 +1,10 @@
 {
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.3.0",
+        "jetbrains/phpstorm-attributes": "^1.0"
     }
 }
