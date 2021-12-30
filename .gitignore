@@ -6,3 +6,4 @@ node_modules
 phpunit.phar
 vendor
 composer.lock
+clover.xml

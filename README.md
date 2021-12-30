@@ -1,3 +1,5 @@
+![UnitTestsBadge](https://github.com/NullixAT/framelix-unit-tests/actions/workflows/unit-tests.yml/badge.svg) ![CoverageBadge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/brainfoolong/2e4ba189fbb1a23bff14e73cb893bc3e/raw/framelix-unit-tests-coverage-data.json)
+
 # Framelix Core Unit Tests
 
 This repository contains the unit tests for the Framelix Core.
@@ -18,6 +20,7 @@ Framelix uses git submodules. So after cloning you have to initialize the submod
     git clone https://github.com/NullixAT/framelix-unit-tests.git
     cd framelix-unit-tests
     git submodule update --init --recursive
+    composer install
 
 Copy `modules/FramelixUnitTests/config/config-editable-template.php`
 to `modules/FramelixUnitTests/config/config-editable.php` and edit contents to your needs.

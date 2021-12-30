@@ -3,27 +3,136 @@
 namespace Framelix\FramelixUnitTests;
 
 use Framelix\Framelix\Config;
+use Framelix\Framelix\Date;
+use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\Mysql;
 use Framelix\Framelix\Db\MysqlStorableSchemeBuilder;
+use Framelix\Framelix\Db\StorableSchema;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Exception;
+use Framelix\Framelix\Form\Field;
+use Framelix\Framelix\Html\HtmlAttributes;
 use Framelix\Framelix\Html\Toast;
+use Framelix\Framelix\Network\JsCall;
 use Framelix\Framelix\Network\Request;
 use Framelix\Framelix\Storable\Storable;
 use Framelix\Framelix\Url;
+use Framelix\Framelix\Utils\Buffer;
+use Framelix\Framelix\View;
+use Framelix\FramelixUnitTests\Storable\TestStorable1;
+use ReflectionClass;
+use ReflectionUnionType;
 use Throwable;
 
+use function call_user_func_array;
 use function file_exists;
 use function file_put_contents;
+use function in_array;
 use function is_array;
 use function is_int;
 use function is_string;
+use function str_starts_with;
 use function strlen;
 use function strtoupper;
 use function unlink;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * Does call all static and public methods of an object
+     * This is solely for php error checks, not for logic tests
+     * This also not covers all methods and some will throw errors
+     * It should be the base tests, later you add manual logic tests
+     * @param object $object
+     * @param array|null $ignoreMethods
+     * @return void
+     */
+    public function callMethodsGeneric(object $object, ?array $ignoreMethods = null): void
+    {
+        $reflection = new ReflectionClass($object);
+        foreach ($reflection->getMethods() as $method) {
+            if ($method->isAbstract() || $method->isPrivate() || $method->isProtected()) {
+                continue;
+            }
+            $shortName = $method->getShortName();
+            if (str_starts_with($shortName, "__")) {
+                continue;
+            }
+            if ($ignoreMethods && in_array($shortName, $ignoreMethods)) {
+                continue;
+            }
+            $args = [];
+            foreach ($method->getParameters() as $parameter) {
+                if ($parameter->isOptional()) {
+                    break;
+                }
+                $value = null;
+                $type = $parameter->getType();
+                if ($type instanceof ReflectionUnionType) {
+                    $type = $type->getTypes()[0];
+                }
+                $paramType = $type?->getName();
+                switch ($paramType) {
+                    case 'int':
+                        $value = 1;
+                        break;
+                    case 'double':
+                    case 'float':
+                        $value = 1.22;
+                        break;
+                    case 'string':
+                    case 'mixed':
+                        $value = "test";
+                        break;
+                    case 'array':
+                        $value = ["test"];
+                        break;
+                    case JsCall::class:
+                        $value = new JsCall("testaction", null);
+                        break;
+                    case Date::class:
+                        $value = Date::create("2000-01-01");
+                        break;
+                    case DateTime::class:
+                        $value = DateTime::create("2000-01-01");
+                        break;
+                    case Storable::class:
+                        $value = new TestStorable1();
+                        break;
+                    case HtmlAttributes::class:
+                        $value = new HtmlAttributes();
+                        break;
+                    case View::class:
+                        $value = new View\Api();
+                        break;
+                    case Field::class:
+                        $value = new Field\Text();
+                        $value->name = "foobar";
+                        break;
+                }
+                $args[] = $value;
+            }
+            Buffer::start();
+            $method->invoke($object, ...$args);
+            Buffer::get();
+            $this->assertTrue(true);
+        }
+    }
+
+    /**
+     * Call all storable interface methods on given class name
+     * @param string $className
+     * @return void
+     */
+    public function callStorableInterfaceMethods(string $className): void
+    {
+        $schema = new StorableSchema($className);
+        $property = $schema->createProperty('test');
+        call_user_func_array([$className, "setupSelfStorableSchemaProperty"], [$property]);
+        call_user_func_array([$className, "createFromDbValue"], ["foo"]);
+        call_user_func_array([$className, "createFromFormValue"], ["foo"]);
+    }
+
     /**
      * Assert storables default getter
      * @param Storable $storable

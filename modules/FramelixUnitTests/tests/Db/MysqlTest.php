@@ -130,12 +130,18 @@ final class MysqlTest extends TestCase
      */
     public function testExceptionDbQuery()
     {
+        $db = Mysql::get('test');
+        Config::set('devMode', true);
         $e = null;
         try {
             // enable dev mode for this test
-            Config::set('devMode', true);
-            $db = Mysql::get('test');
             $db->queryRaw('foo');
+        } catch (Throwable $e) {
+        }
+        $this->assertFramelixErrorCode(ErrorCode::MYSQL_QUERY_ERROR, $e);
+        $e = null;
+        try {
+            $db->queryRaw('DESCRIBE 1');
         } catch (Throwable $e) {
         }
         $this->assertFramelixErrorCode(ErrorCode::MYSQL_QUERY_ERROR, $e);

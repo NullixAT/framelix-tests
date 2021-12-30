@@ -33,6 +33,10 @@ jobs:
         with:
           php-version: '8.1'
           extensions: mbstring, exif, fileinfo, mysqli, sockets, json, curl, simplexml,zip, openssl
+      - name: Setup NodeJS
+        with:
+          node-version: 'lts/*'
+        run: cd modules/Framelix && npm install
       - name: Copy Config for Github Actions
         run: |
           php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy('modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
@@ -41,4 +45,15 @@ jobs:
       - name: Run Composer Install
         run: composer install --no-interaction
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
+        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
+      - name: Set Unit Test Coverage ENV
+        run: php hooks/after-phpunit.php
+      - name: Create Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 2e4ba189fbb1a23bff14e73cb893bc3e
+          filename: framelix-unit-tests-coverage-data.json
+          label: CodeCoverage
+          message: ${{ env.COVERAGE }}
+          color: orange

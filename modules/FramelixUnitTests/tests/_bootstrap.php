@@ -10,3 +10,5 @@ Config::set('database[default]', null);
 Config::set('systemEventLog', null);
 // use a fixed timezone
 ini_set("date.timezone", "Europe/Berlin");
+// disable time limit
+ini_set("max_execution_time", -1);

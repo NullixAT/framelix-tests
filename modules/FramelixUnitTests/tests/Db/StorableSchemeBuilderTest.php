@@ -17,7 +17,7 @@ use function count;
 final class StorableSchemeBuilderTest extends TestCase
 {
     private MysqlStorableSchemeBuilder $builder;
-    
+
     public function testBuilderQueries(): void
     {
         $this->setupDatabase();
