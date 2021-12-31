@@ -16,6 +16,7 @@ use Framelix\Framelix\Html\Toast;
 use Framelix\Framelix\Network\JsCall;
 use Framelix\Framelix\Network\Request;
 use Framelix\Framelix\Storable\Storable;
+use Framelix\Framelix\Storable\User;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\View;
@@ -131,7 +132,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $schema = new StorableSchema($className);
         $property = $schema->createProperty('test');
-        call_user_func_array([$className, "setupSelfStorableSchemaProperty"], [$property]);
+        $this->assertNull(call_user_func_array([$className, "setupSelfStorableSchemaProperty"], [$property]));
         call_user_func_array([$className, "createFromDbValue"], ["foo"]);
         call_user_func_array([$className, "createFromFormValue"], ["foo"]);
     }
@@ -314,6 +315,27 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         unset($url->urlData['scheme'], $url->urlData['host']);
         $_SERVER['REQUEST_URI'] = $url->getPath();
         $this->setSimulatedGetData($url->urlData['queryParameters'] ?? []);
+    }
+
+    /**
+     * Set simulated user
+     * @param mixed $roles
+     *  null = No user
+     *  true = A user without roles
+     *  array = A user with given roles
+     * @return void
+     */
+    public function setSimulatedUser(mixed $roles): void
+    {
+        if ($roles === null) {
+            User::setCurrentUser(null);
+            return;
+        }
+        $user = new User();
+        if (is_array($roles)) {
+            $user->roles = $roles;
+        }
+        User::setCurrentUser($user);
     }
 
     /**

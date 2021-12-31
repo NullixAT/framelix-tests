@@ -1,15 +1,20 @@
 <?php
 
+use Framelix\Framelix\Date;
+use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\LazySearchCondition;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Form\Form;
 use Framelix\Framelix\Html\QuickSearch;
 use Framelix\Framelix\Html\Table;
+use Framelix\Framelix\Lang;
 use Framelix\Framelix\Network\JsCall;
 use Framelix\Framelix\StorableMeta;
+use Framelix\Framelix\Time;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\Utils\JsonUtils;
+use Framelix\FramelixTests\Storable\TestStorable1;
 use Framelix\FramelixTests\Storable\TestStorableSystemValue;
 use Framelix\FramelixTests\StorableMeta\TestStorable2;
 use Framelix\FramelixTests\TestCase;
@@ -18,10 +23,54 @@ final class StorableMetaTest extends TestCase
 {
     public function tests(): void
     {
+        // fake lang for coverage
+        Lang::$values['en']['__framelixtests_storable_teststorable2_grid_label_desc__'] = 'foo';
+
         $this->setupDatabase(true);
         $this->setSimulatedUrl('http://localhost');
+
+        $storable = TestStorable1::getByIdOrNew(1);
+        $this->assertNull($storable->id);
+        $storable->name = "foobar@dev.me";
+        $storable->longText = str_repeat("foo", 100);
+        $storable->intNumber = 69;
+        $storable->floatNumber = 6.9;
+        $storable->boolFlag = true;
+        $storable->jsonData = ['foobar', 1];
+        $storable->dateTime = new DateTime();
+        $storable->date = new DateTime();
+        $storable->store();
+        $storableReference = $storable;
+
         $storable = new \Framelix\FramelixTests\Storable\TestStorable2();
+        // modified timestamp is null for new objects
+        $this->assertNull($storable->getModifiedTimestampTableCell());
+        $storable->name = "foobar@test2.me";
+        $storable->longText = str_repeat("foo", 100);
+        $storable->longTextLazy = str_repeat("foo", 1000);
+        $storable->intNumber = 69;
+        $storable->floatNumber = 6.9;
+        $storable->boolFlag = true;
+        $storable->jsonData = ['foobar', 1];
+        $storable->dateTime = new DateTime("2000-01-01 12:23:44");
+        $storable->date = Date::create("2000-01-01");
+        $storable->otherReferenceOptional = $storableReference;
+        $storable->otherReferenceArrayOptional = [$storableReference];
+        $storable->typedIntArray = [1, 3, 5];
+        $storable->typedBoolArray = [true, false, true];
+        $storable->typedStringArray = ["foo" => "yes", "baby", "yes"];
+        $storable->typedFloatArray = [1.2, 1.6, 1.7];
+        $storable->typedDateArray = [
+            DateTime::create("2000-01-01 12:23:44"),
+            DateTime::create("2000-01-01 12:23:44 + 10 days"),
+            DateTime::create("2000-01-01 12:23:44 + 1 year")
+        ];
+        $storable->time = Time::create("12:00:01");
+        $storable->updateTime = DateTime::create('now - 10 seconds');
+        $storable->store();
+
         $meta = new TestStorable2($storable);
+        $this->assertIsArray($meta->jsonSerialize());
         $meta->lazySearchConditionDefault->addColumn('longText', 'longText', 'string');
         $this->callMethodsGeneric(
             $meta,
@@ -81,15 +130,31 @@ final class StorableMetaTest extends TestCase
         $systemValueTest->flagActive = true;
         $systemValueTest->store();
         $params[] = ['id' => $systemValueTest->id, 'connection-id' => $systemValueTest->connectionId];
+
         $jsCall = new JsCall('savesort', ['ids' => $params]);
         TestStorable2::onJsCall($jsCall);
         $this->assertTrue($jsCall->result);
+
+        $e = null;
+        try {
+            $params = [];
+            $params[] = ['id' => $storableReference->id, 'connection-id' => $storableReference->connectionId];
+
+            $jsCall = new JsCall(
+                'savesort',
+                ['ids' => $params]
+            );
+            TestStorable2::onJsCall($jsCall);
+        } catch (Throwable $e) {
+        }
+        $this->assertFramelixErrorCode(ErrorCode::STORABLE_SORT_CONDITION, $e);
 
         $this->setSimulatedGetData($meta->jsonSerialize());
         $jsCall = new JsCall('quicksearch', ['query' => '']);
         TestStorable2::onJsCall($jsCall);
         $this->assertTrue($jsCall->result === '');
 
+        $this->setSimulatedUser(['dev']);
         Buffer::start();
         $jsCall = new JsCall('quicksearch', ['query' => 'test']);
         TestStorable2::onJsCall($jsCall);
