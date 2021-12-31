@@ -22,15 +22,15 @@ Framelix uses git submodules. So after cloning you have to initialize the submod
     git submodule update --init --recursive
     composer install
 
-Copy `modules/FramelixUnitTests/config/config-editable-template.php`
-to `modules/FramelixUnitTests/config/config-editable.php` and edit contents to your needs.
+Copy `modules/FramelixTests/config/config-editable-template.php`
+to `modules/FramelixTests/config/config-editable.php` and edit contents to your needs.
 
 ## Development
 
 To develop in this library there are 2 modules.
 
 * Framelix - Which is the core itself and integrated as a submodule
-* FramelixUnitTests - The actual test module where all tests live in
+* FramelixTests - The actual test module where all tests live in
 *
 
 #### Submodule development

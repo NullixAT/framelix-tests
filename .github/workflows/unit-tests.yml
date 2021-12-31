@@ -39,13 +39,13 @@ jobs:
         run: cd modules/Framelix && npm install
       - name: Copy Config for Github Actions
         run: |
-          php -r "file_exists('modules/FramelixUnitTests/config/config-editable.php') || copy('modules/FramelixUnitTests/config/config-editable-github-actions.php', 'modules/FramelixUnitTests/config/config-editable.php');"
+          php -r "file_exists('modules/FramelixTests/config/config-editable.php') || copy('modules/FramelixTests/config/config-editable-github-actions.php', 'modules/FramelixTests/config/config-editable.php');"
       - name: Update Composer
         run: sudo composer self-update --no-interaction
       - name: Run Composer Install
         run: composer install --no-interaction
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/_phpunit.xml
+        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixTests/tests/_bootstrap.php --configuration modules/FramelixTests/tests/_phpunit.xml
       - name: Set Unit Test Coverage ENV
         run: php hooks/after-phpunit.php
       - name: Create Coverage Badge

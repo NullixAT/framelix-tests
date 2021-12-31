@@ -7,7 +7,7 @@ parameters:
   scanDirectories:
     - modules/Framelix/vendor
   bootstrapFiles:
-    - modules/FramelixUnitTests/public/index.php
+    - modules/FramelixTests/public/index.php
     - modules/Framelix/public/check-requirements.php
   checkMissingIterableValueType: false
   ignoreErrors:
