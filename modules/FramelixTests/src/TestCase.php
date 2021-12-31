@@ -297,6 +297,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $url->removeParameters();
         $url->addParameters($data);
         $_SERVER['REQUEST_URI'] = $url->getPathAndQueryString();
+        if ($url->getHash()) {
+            $_SERVER['REQUEST_URI'] .= "#" . $url->getHash();
+        }
         $_GET = $data;
     }
 
@@ -309,11 +312,23 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         if (is_string($url)) {
             $url = Url::create($url);
+        } else {
+            $url = clone $url;
+        }
+        $host = $url->urlData['host'] ?? 'localhost';
+        if ($url->getUsername()) {
+            $host = $url->getUsername() . ":" . $url->getPassword() . "@" . $host;
+        }
+        if ($url->getPort()) {
+            $host .= ":" . $url->getPort();
         }
         $_SERVER['HTTPS'] = (($url->urlData['scheme'] ?? null) === "https") ? "on" : "off";
-        $_SERVER['HTTP_HOST'] = $url->urlData['host'] ?? 'localhost';
+        $_SERVER['HTTP_HOST'] = $host;
         unset($url->urlData['scheme'], $url->urlData['host']);
         $_SERVER['REQUEST_URI'] = $url->getPath();
+        if ($url->getHash()) {
+            $_SERVER['REQUEST_URI'] .= "#" . $url->getHash();
+        }
         $this->setSimulatedGetData($url->urlData['queryParameters'] ?? []);
     }
 
