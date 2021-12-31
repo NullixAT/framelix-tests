@@ -1,6 +1,6 @@
 <?php
 
-namespace Framelix\FramelixUnitTests\Storable;
+namespace Framelix\FramelixTests\Storable;
 
 use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\StorableSchema;

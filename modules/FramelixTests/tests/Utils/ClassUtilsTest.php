@@ -6,8 +6,8 @@ use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Storable\User;
 use Framelix\Framelix\Utils\ClassUtils;
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\Storable\TestStorable1;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorable1;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 use function realpath;
@@ -21,8 +21,8 @@ final class ClassUtilsTest extends TestCase
     {
         $this->assertSame('ClassUtilsTest', ClassUtils::getClassBaseName(__CLASS__));
         $this->assertSame('utils-classutilstest', ClassUtils::getHtmlClass(__CLASS__));
-        $this->assertSame('framelixunittests-storable-teststorable1', ClassUtils::getHtmlClass(TestStorable1::class));
-        $this->assertSame('__framelixunittests_storable_teststorable1__', ClassUtils::getLangKey(TestStorable1::class));
+        $this->assertSame('framelixtests-storable-teststorable1', ClassUtils::getHtmlClass(TestStorable1::class));
+        $this->assertSame('__framelixtests_storable_teststorable1__', ClassUtils::getLangKey(TestStorable1::class));
         $this->assertSame('__utils_classutilstest__', ClassUtils::getLangKey(__CLASS__));
         $this->assertSame('__utils_classutilstest_foo__', ClassUtils::getLangKey(__CLASS__, "foo"));
         ClassUtils::validateClassName(__CLASS__);
@@ -45,8 +45,8 @@ final class ClassUtilsTest extends TestCase
             ClassUtils::getFilePathForClassName(User::class),
             FRAMELIX_APP_ROOT . "/modules/Framelix/src/Storable/User.php"
         );
-        $this->assertSame(ClassUtils::getModuleForClass(TestStorable1::class), "FramelixUnitTests");
-        $this->assertSame(ClassUtils::getModuleForClass(new TestStorable1()), "FramelixUnitTests");
+        $this->assertSame(ClassUtils::getModuleForClass(TestStorable1::class), "FramelixTests");
+        $this->assertSame(ClassUtils::getModuleForClass(new TestStorable1()), "FramelixTests");
     }
 
     public function testExceptionInvalidClassName(): void

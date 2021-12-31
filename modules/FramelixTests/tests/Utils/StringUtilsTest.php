@@ -6,7 +6,7 @@ use Framelix\Framelix\Html\HtmlAttributes;
 use Framelix\Framelix\Lang;
 use Framelix\Framelix\Storable\User;
 use Framelix\Framelix\Utils\StringUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class StringUtilsTest extends TestCase
 {

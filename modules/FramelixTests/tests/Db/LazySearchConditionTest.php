@@ -7,7 +7,7 @@ use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\LazySearchCondition;
 use Framelix\Framelix\Db\Mysql;
 use Framelix\Framelix\Lang;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class LazySearchConditionTest extends TestCase
 {

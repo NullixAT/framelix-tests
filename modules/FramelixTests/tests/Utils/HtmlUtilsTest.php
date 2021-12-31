@@ -5,7 +5,7 @@ namespace Utils;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\HtmlUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 final class HtmlUtilsTest extends TestCase

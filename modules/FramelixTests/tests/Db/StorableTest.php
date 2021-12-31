@@ -15,11 +15,11 @@ use Framelix\Framelix\Storable\SystemEventLog;
 use Framelix\Framelix\Time;
 use Framelix\Framelix\Utils\ClassUtils;
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\Storable\Deeper\TestStorableDeeper;
-use Framelix\FramelixUnitTests\Storable\TestStorable1;
-use Framelix\FramelixUnitTests\Storable\TestStorable2;
-use Framelix\FramelixUnitTests\Storable\TestStorablePrefetch;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\Deeper\TestStorableDeeper;
+use Framelix\FramelixTests\Storable\TestStorable1;
+use Framelix\FramelixTests\Storable\TestStorable2;
+use Framelix\FramelixTests\Storable\TestStorablePrefetch;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 use function array_chunk;
@@ -95,7 +95,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test2.me',
-            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable1 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixtests_storable_teststorable1 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -135,7 +135,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test2.me',
-            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixtests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -156,7 +156,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(4);
         $this->assertSame(
             'foobar@test3.me',
-            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixtests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -167,7 +167,7 @@ final class StorableTest extends TestCase
         $this->assertExecutedQueries(3);
         $this->assertSame(
             'foobar@test4.me',
-            $db->fetchOne("SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storable)
+            $db->fetchOne("SELECT name FROM framelix_framelixtests_storable_teststorable2 WHERE id = " . $storable)
         );
 
         $this->startRecordExecutedQueries();
@@ -187,7 +187,7 @@ final class StorableTest extends TestCase
         $this->assertSame(
             null,
             $db->fetchOne(
-                "SELECT name FROM framelix_framelixunittests_storable_teststorable2 WHERE id = " . $storableId
+                "SELECT name FROM framelix_framelixtests_storable_teststorable2 WHERE id = " . $storableId
             )
         );
 

@@ -6,8 +6,8 @@ use Framelix\Framelix\Config;
 use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\Mysql;
 use Framelix\Framelix\ErrorCode;
-use Framelix\FramelixUnitTests\Storable\TestStorable2;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorable2;
+use Framelix\FramelixTests\TestCase;
 use ReflectionClass;
 use Throwable;
 

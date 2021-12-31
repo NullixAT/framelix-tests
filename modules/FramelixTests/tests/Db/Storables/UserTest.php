@@ -4,7 +4,7 @@ namespace Db\Storables;
 
 use Framelix\Framelix\Storable\User;
 use Framelix\Framelix\Storable\UserToken;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class UserTest extends TestCase
 {

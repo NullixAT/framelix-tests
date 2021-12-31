@@ -7,8 +7,8 @@ use Framelix\Framelix\StopException;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\Utils\FileUtils;
 use Framelix\Framelix\Utils\JsonUtils;
-use Framelix\FramelixUnitTests\Storable\TestStorableFile;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorableFile;
+use Framelix\FramelixTests\TestCase;
 
 use function file_get_contents;
 use function file_put_contents;

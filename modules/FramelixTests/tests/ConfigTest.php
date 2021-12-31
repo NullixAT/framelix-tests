@@ -2,7 +2,7 @@
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\ErrorCode;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class ConfigTest extends TestCase
 {

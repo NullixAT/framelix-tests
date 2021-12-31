@@ -3,7 +3,7 @@
 namespace Network;
 
 use Framelix\Framelix\Network\Session;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class SessionTest extends TestCase
 {

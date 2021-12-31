@@ -3,7 +3,7 @@
 namespace Html;
 
 use Framelix\Framelix\Html\TableCell;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class TableCellTest extends TestCase
 {

@@ -18,7 +18,7 @@ if (!defined("FRAMELIX_MODULE")) {
             "general": "jdTbhul2sd3yyaLQPfTFNToE42PcXOCC991SzzKlUrQhS1hhkdTIHufuJ8Sj6XPgd"
         },
         "compiler": {
-            "FramelixUnitTests": {
+            "FramelixTests": {
                 "js": {
                     "test-folder": {
                         "files": [

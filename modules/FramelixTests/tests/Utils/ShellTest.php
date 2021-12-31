@@ -4,7 +4,7 @@ namespace Utils;
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\Utils\Shell;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function escapeshellarg;
 

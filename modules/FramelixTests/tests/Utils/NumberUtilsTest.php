@@ -4,7 +4,7 @@ namespace Utils;
 
 use Framelix\Framelix\Date;
 use Framelix\Framelix\Utils\NumberUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class NumberUtilsTest extends TestCase
 {

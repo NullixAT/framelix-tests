@@ -3,7 +3,7 @@
 namespace Utils;
 
 use Framelix\Framelix\Utils\ColorUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class ColorUtilsTest extends TestCase
 {

@@ -5,7 +5,7 @@ namespace Utils;
 use Framelix\Framelix\DateTime;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Utils\ArrayUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 use stdClass;
 use Throwable;
 

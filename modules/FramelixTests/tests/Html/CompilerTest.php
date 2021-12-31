@@ -7,7 +7,7 @@ use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Html\Compiler;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 use function file_exists;

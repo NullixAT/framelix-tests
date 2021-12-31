@@ -5,7 +5,7 @@ namespace Utils;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Utils\FileUtils;
 use Framelix\Framelix\Utils\Zip;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 final class ZipTest extends TestCase
@@ -48,10 +48,10 @@ final class ZipTest extends TestCase
 
         Zip::unzip($zipFile, $tmpFolder, true);
         $this->assertFilelist([
-            'modules/FramelixUnitTests/tmp/ziptest/fileutils-test/sub/test1',
-            'modules/FramelixUnitTests/tmp/ziptest/fileutils-test/sub/test1.txt',
-            'modules/FramelixUnitTests/tmp/ziptest/fileutils-test/test1',
-            'modules/FramelixUnitTests/tmp/ziptest/fileutils-test/test1.txt'
+            'modules/FramelixTests/tmp/ziptest/fileutils-test/sub/test1',
+            'modules/FramelixTests/tmp/ziptest/fileutils-test/sub/test1.txt',
+            'modules/FramelixTests/tmp/ziptest/fileutils-test/test1',
+            'modules/FramelixTests/tmp/ziptest/fileutils-test/test1.txt'
         ], $tmpFolder);
 
         $e = null;
@@ -72,12 +72,12 @@ final class ZipTest extends TestCase
 
         Zip::unzip($zipCreateFile, $tmpFolder, true);
         $this->assertFilelist([
-            'modules/FramelixUnitTests/tmp/ziptest/.gitignore',
-            'modules/FramelixUnitTests/tmp/ziptest/sub/test1',
-            'modules/FramelixUnitTests/tmp/ziptest/sub/test1.txt',
-            'modules/FramelixUnitTests/tmp/ziptest/test.zip',
-            'modules/FramelixUnitTests/tmp/ziptest/test1',
-            'modules/FramelixUnitTests/tmp/ziptest/test1.txt'
+            'modules/FramelixTests/tmp/ziptest/.gitignore',
+            'modules/FramelixTests/tmp/ziptest/sub/test1',
+            'modules/FramelixTests/tmp/ziptest/sub/test1.txt',
+            'modules/FramelixTests/tmp/ziptest/test.zip',
+            'modules/FramelixTests/tmp/ziptest/test1',
+            'modules/FramelixTests/tmp/ziptest/test1.txt'
         ], $tmpFolder);
         FileUtils::deleteDirectory($tmpFolder);
     }

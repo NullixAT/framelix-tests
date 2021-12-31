@@ -1,9 +1,9 @@
 <?php
 
-namespace Framelix\FramelixUnitTests\Storable\Deeper;
+namespace Framelix\FramelixTests\Storable\Deeper;
 
 use Framelix\Framelix\Db\StorableSchema;
-use Framelix\FramelixUnitTests\Storable;
+use Framelix\FramelixTests\Storable;
 
 /**
  * TestStorableDeeper

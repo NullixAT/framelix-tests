@@ -1,6 +1,6 @@
 <?php
 
-namespace Framelix\FramelixUnitTests\StorableException;
+namespace Framelix\FramelixTests\StorableException;
 
 use Framelix\Framelix\Storable\Storable;
 

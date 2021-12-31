@@ -3,7 +3,7 @@
 namespace Html;
 
 use Framelix\Framelix\Html\QuickSearch;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class QuickSearchTest extends TestCase
 {

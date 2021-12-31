@@ -3,7 +3,7 @@
 namespace Utils;
 
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function basename;
 use function dirname;
@@ -28,43 +28,43 @@ final class FileUtilsTest extends TestCase
         $this->assertSame(FRAMELIX_MODULE, FileUtils::getModuleForPath(__FILE__));
         $this->assertNull(FileUtils::getModuleForPath(__FILE__ . "NotExist"));
         $this->assertSame(
-            "modules/FramelixUnitTests/tests/Utils/" . basename(__FILE__),
+            "modules/FramelixTests/tests/Utils/" . basename(__FILE__),
             FileUtils::getRelativePathToBase(__FILE__)
         );
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test/.gitignore",
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1",
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt"
+                "modules/FramelixTests/tmp/fileutils-test/.gitignore",
+                "modules/FramelixTests/tmp/fileutils-test/test1",
+                "modules/FramelixTests/tmp/fileutils-test/test1.txt"
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test")
         );
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt",
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1",
-                "modules/FramelixUnitTests/tmp/fileutils-test/.gitignore",
+                "modules/FramelixTests/tmp/fileutils-test/test1.txt",
+                "modules/FramelixTests/tmp/fileutils-test/test1",
+                "modules/FramelixTests/tmp/fileutils-test/.gitignore",
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test", sortOrder: SCANDIR_SORT_DESCENDING)
         );
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt"
+                "modules/FramelixTests/tmp/fileutils-test/test1.txt"
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test", "~\.txt$~")
         );
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test/sub/test1.txt",
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt",
+                "modules/FramelixTests/tmp/fileutils-test/sub/test1.txt",
+                "modules/FramelixTests/tmp/fileutils-test/test1.txt",
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test", "~\.txt$~", true)
         );
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test/sub",
-                "modules/FramelixUnitTests/tmp/fileutils-test/sub/test1.txt",
-                "modules/FramelixUnitTests/tmp/fileutils-test/test1.txt",
+                "modules/FramelixTests/tmp/fileutils-test/sub",
+                "modules/FramelixTests/tmp/fileutils-test/sub/test1.txt",
+                "modules/FramelixTests/tmp/fileutils-test/test1.txt",
             ],
             FileUtils::getFiles(__DIR__ . "/../../tmp/fileutils-test", "~\.txt$~", true, true)
         );
@@ -76,9 +76,9 @@ final class FileUtilsTest extends TestCase
         file_put_contents($testFolder . "/test/test.txt", "1");
         $this->assertFilelist(
             [
-                "modules/FramelixUnitTests/tmp/fileutils-test-tmp/test",
-                "modules/FramelixUnitTests/tmp/fileutils-test-tmp/test/test.txt",
-                "modules/FramelixUnitTests/tmp/fileutils-test-tmp/test.txt",
+                "modules/FramelixTests/tmp/fileutils-test-tmp/test",
+                "modules/FramelixTests/tmp/fileutils-test-tmp/test/test.txt",
+                "modules/FramelixTests/tmp/fileutils-test-tmp/test.txt",
             ],
             FileUtils::getFiles($testFolder, null, true, true)
         );

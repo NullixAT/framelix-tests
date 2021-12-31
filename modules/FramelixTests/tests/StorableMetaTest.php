@@ -10,9 +10,9 @@ use Framelix\Framelix\StorableMeta;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\Utils\JsonUtils;
-use Framelix\FramelixUnitTests\Storable\TestStorableSystemValue;
-use Framelix\FramelixUnitTests\StorableMeta\TestStorable2;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorableSystemValue;
+use Framelix\FramelixTests\StorableMeta\TestStorable2;
+use Framelix\FramelixTests\TestCase;
 
 final class StorableMetaTest extends TestCase
 {
@@ -20,7 +20,7 @@ final class StorableMetaTest extends TestCase
     {
         $this->setupDatabase(true);
         $this->setSimulatedUrl('http://localhost');
-        $storable = new \Framelix\FramelixUnitTests\Storable\TestStorable2();
+        $storable = new \Framelix\FramelixTests\Storable\TestStorable2();
         $meta = new TestStorable2($storable);
         $meta->lazySearchConditionDefault->addColumn('longText', 'longText', 'string');
         $this->callMethodsGeneric(

@@ -3,7 +3,7 @@
 namespace Network;
 
 use Framelix\Framelix\Network\Cookie;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class CookieTest extends TestCase
 {

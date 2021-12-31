@@ -4,7 +4,7 @@ namespace Network;
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\Network\Request;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class RequestTest extends TestCase
 {

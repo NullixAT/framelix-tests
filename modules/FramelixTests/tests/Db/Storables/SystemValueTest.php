@@ -2,8 +2,8 @@
 
 namespace Db\Storables;
 
-use Framelix\FramelixUnitTests\Storable\TestStorableSystemValue;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorableSystemValue;
+use Framelix\FramelixTests\TestCase;
 
 final class SystemValueTest extends TestCase
 {

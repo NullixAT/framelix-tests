@@ -4,7 +4,7 @@ namespace Utils;
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\Utils\CryptoUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class CryptoUtilsTest extends TestCase
 {

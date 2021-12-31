@@ -1,6 +1,6 @@
 <?php
 
-namespace Framelix\FramelixUnitTests;
+namespace Framelix\FramelixTests;
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\Date;
@@ -19,7 +19,7 @@ use Framelix\Framelix\Storable\Storable;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\View;
-use Framelix\FramelixUnitTests\Storable\TestStorable1;
+use Framelix\FramelixTests\Storable\TestStorable1;
 use ReflectionClass;
 use ReflectionUnionType;
 use Throwable;

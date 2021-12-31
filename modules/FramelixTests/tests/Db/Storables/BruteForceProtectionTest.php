@@ -4,7 +4,7 @@ namespace Db\Storables;
 
 use Framelix\Framelix\Config;
 use Framelix\Framelix\Storable\BruteForceProtection;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function sleep;
 

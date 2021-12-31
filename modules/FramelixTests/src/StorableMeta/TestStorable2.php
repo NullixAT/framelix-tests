@@ -1,6 +1,6 @@
 <?php
 
-namespace Framelix\FramelixUnitTests\StorableMeta;
+namespace Framelix\FramelixTests\StorableMeta;
 
 use Framelix\Framelix\Form\Field\Email;
 use Framelix\Framelix\Form\Field\Select;
@@ -15,7 +15,7 @@ class TestStorable2 extends StorableMeta
 {
     /**
      * The storable
-     * @var \Framelix\FramelixUnitTests\Storable\TestStorable2
+     * @var \Framelix\FramelixTests\Storable\TestStorable2
      */
     public Storable $storable;
 

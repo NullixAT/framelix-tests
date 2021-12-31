@@ -4,7 +4,7 @@ use Framelix\Framelix\Config;
 use Framelix\Framelix\ErrorHandler;
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class ErrorHandlerTest extends TestCase
 {

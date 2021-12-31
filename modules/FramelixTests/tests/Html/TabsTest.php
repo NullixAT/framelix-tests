@@ -3,7 +3,7 @@
 namespace Html;
 
 use Framelix\Framelix\Html\Tabs;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class TabsTest extends TestCase
 {

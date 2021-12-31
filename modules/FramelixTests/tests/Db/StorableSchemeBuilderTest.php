@@ -6,10 +6,10 @@ use Framelix\Framelix\Db\Mysql;
 use Framelix\Framelix\Db\MysqlStorableSchemeBuilder;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Storable\Storable;
-use Framelix\FramelixUnitTests\Storable\TestStorable2;
-use Framelix\FramelixUnitTests\StorableException\TestStorableNoType;
-use Framelix\FramelixUnitTests\StorableException\TestStorableUnsupportedType;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorable2;
+use Framelix\FramelixTests\StorableException\TestStorableNoType;
+use Framelix\FramelixTests\StorableException\TestStorableUnsupportedType;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 use function count;
@@ -40,7 +40,7 @@ final class StorableSchemeBuilderTest extends TestCase
         $this->assertQueryCount(0, $queries, true);
         // deleting a column and than the builder should recreate this including the index
         // 3 queries because 1x adding, 1x reordering columns and 1x creating an index
-        $db->query("ALTER TABLE framelix_framelixunittests_storable_teststorable2 DROP COLUMN `createUser`");
+        $db->query("ALTER TABLE framelix_framelixtests_storable_teststorable2 DROP COLUMN `createUser`");
         $queries = $this->builder->getQueries();
         // 1 of 3 is unsafe, so we have 2 safe queries
         $this->assertCount(2, $this->builder->getSafeQueries());
@@ -50,7 +50,7 @@ final class StorableSchemeBuilderTest extends TestCase
         $this->assertQueryCount(3, $queries, true);
         // modifying some table data to simulate changed property behaviour
         $db->query(
-            'ALTER TABLE `framelix_framelixunittests_storable_teststorable2`
+            'ALTER TABLE `framelix_framelixtests_storable_teststorable2`
 	CHANGE COLUMN `createTime` `createTime` DATE NULL DEFAULT NULL AFTER `id`,
 	CHANGE COLUMN `longText` `longText` VARCHAR(50) NULL DEFAULT NULL COLLATE \'utf8mb4_unicode_ci\' AFTER `name`,
 	CHANGE COLUMN `selfReferenceOptional` `selfReferenceOptionals` BIGINT(18) UNSIGNED NULL DEFAULT NULL,

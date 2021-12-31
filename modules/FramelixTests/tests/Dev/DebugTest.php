@@ -4,7 +4,7 @@ namespace Dev;
 
 use Framelix\Framelix\Dev\Debug;
 use Framelix\Framelix\Utils\Buffer;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function var_dump;
 

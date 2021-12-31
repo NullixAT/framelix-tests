@@ -4,7 +4,7 @@ namespace Utils;
 
 use Framelix\Framelix\Utils\Buffer;
 use Framelix\Framelix\Utils\JsonUtils;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function base64_encode;
 use function file_exists;

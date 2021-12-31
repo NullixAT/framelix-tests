@@ -2,7 +2,7 @@
 
 use Framelix\Framelix\Date;
 use Framelix\Framelix\DateTime;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class DateTimeTest extends TestCase
 {

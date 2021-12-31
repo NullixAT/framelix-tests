@@ -6,8 +6,8 @@ use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Network\UploadedFile;
 use Framelix\Framelix\Url;
 use Framelix\Framelix\Utils\FileUtils;
-use Framelix\FramelixUnitTests\Storable\TestStorableFile;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\Storable\TestStorableFile;
+use Framelix\FramelixTests\TestCase;
 use Throwable;
 
 use function mkdir;

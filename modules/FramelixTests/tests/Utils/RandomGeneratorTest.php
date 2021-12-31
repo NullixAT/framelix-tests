@@ -3,7 +3,7 @@
 namespace Utils;
 
 use Framelix\Framelix\Utils\RandomGenerator;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 final class RandomGeneratorTest extends TestCase
 {

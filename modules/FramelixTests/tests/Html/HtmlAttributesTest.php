@@ -3,7 +3,7 @@
 namespace Html;
 
 use Framelix\Framelix\Html\HtmlAttributes;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use function json_encode;
 

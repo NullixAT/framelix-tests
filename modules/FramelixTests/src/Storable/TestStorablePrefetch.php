@@ -1,6 +1,6 @@
 <?php
 
-namespace Framelix\FramelixUnitTests\Storable;
+namespace Framelix\FramelixTests\Storable;
 
 use Framelix\Framelix\Db\StorableSchema;
 use Framelix\Framelix\Storable\StorableExtended;

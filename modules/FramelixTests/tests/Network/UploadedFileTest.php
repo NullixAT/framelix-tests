@@ -3,7 +3,7 @@
 namespace Network;
 
 use Framelix\Framelix\Network\UploadedFile;
-use Framelix\FramelixUnitTests\TestCase;
+use Framelix\FramelixTests\TestCase;
 
 use const UPLOAD_ERR_CANT_WRITE;
 
