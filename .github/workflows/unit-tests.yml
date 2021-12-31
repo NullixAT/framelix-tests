@@ -45,7 +45,7 @@ jobs:
       - name: Run Composer Install
         run: composer install --no-interaction
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/phpunit.xml
+        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixUnitTests/tests/_bootstrap.php --configuration modules/FramelixUnitTests/tests/_phpunit.xml
       - name: Set Unit Test Coverage ENV
         run: php hooks/after-phpunit.php
       - name: Create Coverage Badge

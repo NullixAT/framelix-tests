@@ -102,6 +102,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                     case HtmlAttributes::class:
                         $value = new HtmlAttributes();
                         break;
+                    case Url::class:
+                        $value = Url::create();
+                        break;
                     case View::class:
                         $value = new View\Api();
                         break;
@@ -289,6 +292,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     public function setSimulatedGetData(array $data): void
     {
+        $url = Url::create();
+        $url->removeParameters();
+        $url->addParameters($data);
+        $_SERVER['REQUEST_URI'] = $url->getPathAndQueryString();
         $_GET = $data;
     }
 
@@ -305,8 +312,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $_SERVER['HTTPS'] = (($url->urlData['scheme'] ?? null) === "https") ? "on" : "off";
         $_SERVER['HTTP_HOST'] = $url->urlData['host'] ?? 'localhost';
         unset($url->urlData['scheme'], $url->urlData['host']);
-        $_SERVER['REQUEST_URI'] = $url->getUrlAsString();
-        $this->setSimulatedGetData($url->urlData['queryParameters']);
+        $_SERVER['REQUEST_URI'] = $url->getPath();
+        $this->setSimulatedGetData($url->urlData['queryParameters'] ?? []);
     }
 
     /**

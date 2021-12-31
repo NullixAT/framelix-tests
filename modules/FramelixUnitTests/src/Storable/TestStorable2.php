@@ -29,6 +29,7 @@ use Framelix\Framelix\Time;
  * @property bool[]|null $typedBoolArray
  * @property DateTime[]|null $typedDateArray
  * @property TestStorable2|null $selfReferenceOptional
+ * @property TestStorableSystemValue|null $systemValueOptional
  * @property TestStorable1|null $otherReferenceOptional
  * @property TestStorable1[]|null $otherReferenceArrayOptional
  * @property DateTime $dateTime

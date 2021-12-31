@@ -12,6 +12,8 @@ use Framelix\Framelix\View;
 use Framelix\FramelixUnitTests\TestCase;
 use Throwable;
 
+use function var_dump;
+
 final class JsCallTest extends TestCase
 {
 
