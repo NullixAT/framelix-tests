@@ -11,8 +11,10 @@ use Framelix\Framelix\Db\StorableSchema;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Exception;
 use Framelix\Framelix\Form\Field;
+use Framelix\Framelix\Form\Form;
 use Framelix\Framelix\Html\HtmlAttributes;
 use Framelix\Framelix\Html\Toast;
+use Framelix\Framelix\Lang;
 use Framelix\Framelix\Network\JsCall;
 use Framelix\Framelix\Network\Request;
 use Framelix\Framelix\Storable\Storable;
@@ -28,6 +30,7 @@ use Throwable;
 use function call_user_func_array;
 use function file_exists;
 use function file_put_contents;
+use function get_class;
 use function in_array;
 use function is_array;
 use function is_int;
@@ -121,6 +124,41 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             Buffer::get();
             $this->assertTrue(true);
         }
+    }
+
+    /**
+     * Call all methods that each field must have
+     * @param Field $field
+     * @return void
+     */
+    public function callFormFieldDefaultMethods(Field $field): void
+    {
+        $testForm = new Form();
+        $testForm->id = "test";
+
+        $class = get_class($field);
+        $clone = new $class();
+        $clone->name = "foo";
+        $testForm->addField($clone);
+
+        // check required
+        $clone->required = true;
+        $this->assertSame(Lang::get('__framelix_form_validation_required__'), $clone->validate());
+
+        $clone->getVisibilityCondition()->equal('foo', 'test');
+        $this->assertFalse($clone->isVisible());
+        // just calling validate to pass the default validation tests
+        // could be anything (string/bool)
+        $clone->validate();
+
+        $oldPost = $_POST;
+        $this->setSimulatedPostData([$clone->name => 'test']);
+        $this->assertTrue($clone->isVisible());
+        $this->setSimulatedPostData($oldPost);
+
+        $clone->defaultValue = "bla";
+
+        $this->assertIsArray($clone->jsonSerialize());
     }
 
     /**

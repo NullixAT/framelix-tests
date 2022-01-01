@@ -20,6 +20,7 @@ final class DateTimeTest extends TestCase
         $this->assertSame('01.01.2000 12:00:00', $obj->getRawTextString());
         $this->assertSame('01.01.2000', DateTime::anyToFormat('2000-01-01 12:00:00'));
         $this->assertSame('01.01.2000', DateTime::anyToFormat($obj));
+        $this->assertSame('01.01.2000', DateTime::anyToFormat(Date::create('01.01.2000')));
         $this->assertSame(null, DateTime::anyToFormat('&'));
         $this->assertSame(null, DateTime::anyToFormat(null));
         $this->assertSame(null, DateTime::anyToFormat(' '));

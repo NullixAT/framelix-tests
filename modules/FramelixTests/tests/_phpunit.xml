@@ -16,6 +16,7 @@
     <testsuites>
         <testsuite name="default">
             <directory>..</directory>
+            <exclude>../src/Blah/MyBundle/Tests/Controller/</exclude>
         </testsuite>
     </testsuites>
 
@@ -24,5 +25,10 @@
         <include>
             <directory suffix=".php">../../Framelix/src</directory>
         </include>
+        <!-- This directories will be covered by end2end tests -->
+        <exclude>
+            <directory suffix=".php">../../Framelix/src/Backend</directory>
+            <directory suffix=".php">../../Framelix/src/View</directory>
+        </exclude>
     </coverage>
 </phpunit>
