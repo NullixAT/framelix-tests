@@ -1,3 +1,50 @@
 {
-    "directoryListHash": "1|0"
+    "directoryListHash": "1|851160277",
+    "views": {
+        "Framelix\\FramelixTests\\View\\Index": {
+            "accessRole": "*",
+            "customUrl": null,
+            "devModeOnly": false,
+            "multilanguage": true,
+            "depth": 1,
+            "pageTitle": "{classLangKey}",
+            "url": ""
+        },
+        "Framelix\\FramelixTests\\View\\TestBackendView": {
+            "accessRole": "*",
+            "customUrl": null,
+            "devModeOnly": false,
+            "multilanguage": true,
+            "depth": 3,
+            "pageTitle": "{classLangKey}",
+            "url": "\/testbackendview"
+        },
+        "Framelix\\FramelixTests\\View\\TestView": {
+            "accessRole": "*",
+            "customUrl": null,
+            "devModeOnly": false,
+            "multilanguage": true,
+            "depth": 1,
+            "pageTitle": "{classLangKey}",
+            "url": "\/testview"
+        },
+        "Framelix\\FramelixTests\\View\\TestViewCustomUrl": {
+            "accessRole": "*",
+            "customUrl": "\/custom",
+            "devModeOnly": false,
+            "multilanguage": true,
+            "depth": 1,
+            "pageTitle": "{classLangKey}",
+            "url": "\/testviewcustomurl"
+        },
+        "Framelix\\FramelixTests\\View\\TestViewRegexUrl": {
+            "accessRole": "*",
+            "customUrl": "~^\/regex\/(?<id>[0-9]+)~",
+            "devModeOnly": false,
+            "multilanguage": true,
+            "depth": 101,
+            "pageTitle": "{classLangKey}",
+            "url": "\/testviewregexurl"
+        }
+    }
 }

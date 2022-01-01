@@ -13,6 +13,8 @@ final class UrlTest extends TestCase
         Config::set('urlGlobalContextParameterKeys', ['car']);
         Config::set('languageMultiple', true);
         Config::set('languagesSupported', ['de', 'en']);
+
+        // tests with global vars and generic stuff
         $indexPhp = __DIR__ . "/../public/index.php";
         $fakeUrlStr = 'http://localhost/foobar?param=zar&car=nar';
         $_GET['car'] = "nar";
@@ -25,6 +27,8 @@ final class UrlTest extends TestCase
         $this->assertSame($fakeUrlStr, Url::getBrowserUrl()->jsonSerialize());
         $fakeUrl->removeGlobalContextParameters();
         Config::set('urlGlobalContextParameterKeys', null);
+
+        // test getUrlToFile
         $this->assertSame(
             null,
             Url::getUrlToFile("notexist")
@@ -45,16 +49,22 @@ final class UrlTest extends TestCase
             'http://localhost/@FramelixTests/index.php?t=',
             (string)Url::getUrlToFile($indexPhp, "Framelix", true)
         );
+        // test getModulePublicFolderUrl
         $this->assertSame(
             'http://localhost/',
             (string)Url::getModulePublicFolderUrl("Framelix")
         );
+
+        // test remove parameter
+        $fakeUrl = Url::create($fakeUrlStr);
         $fakeUrl->removeParameterByValue('zar');
         $fakeUrl->removeParameterByValue('');
         $this->assertSame(
-            'http://localhost/foobar',
+            'http://localhost/foobar?car=nar',
             (string)$fakeUrl
         );
+
+        // test url updating
         $fakeUrlStr = 'http://user:pass@localhost:4430/foobar?param=zar&car=nar#hash';
         $this->setSimulatedUrl($fakeUrlStr);
         $url = Url::create();
@@ -64,6 +74,7 @@ final class UrlTest extends TestCase
         $url->update($fakeUrlStr, true);
         $this->assertSame($fakeUrlStr, (string)$url);
 
+        // test getter/setter
         $this->assertSame(4430, $url->getPort());
         $url->setPort(222);
         $this->assertSame(222, $url->getPort());
@@ -95,6 +106,7 @@ final class UrlTest extends TestCase
         $this->assertSame('http://localhost?foo%5Bbar%5D=war', (string)$url);
         $this->assertSame(["foo[bar]" => 'war'], $url->getParameters());
 
+        // test language in url
         $fakeUrlStr = 'http://localhost/en/bla';
         $this->setSimulatedUrl($fakeUrlStr);
         $url = Url::create();
@@ -104,6 +116,7 @@ final class UrlTest extends TestCase
         $this->assertSame('de', $url->getLanguage());
         $this->assertSame('http://localhost/de/bla', (string)$url);
 
+        // test sign/verify
         $url->sign();
         $this->assertNotNull($url->getParameter('__s'));
         $this->assertNotNull($url->getParameter('__expires'));
@@ -116,6 +129,7 @@ final class UrlTest extends TestCase
             $url->verify();
         } catch (Throwable $e) {
         }
+        $this->assertFramelixErrorCode(ErrorCode::URL_INCORRECT_SIGNATURE, $e);
         $url->setParameter('__s', $s);
 
         $e = null;
