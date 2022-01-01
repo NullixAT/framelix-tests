@@ -11,8 +11,9 @@ know when there is something new to test it out. I will try to make some project
 early/mid 2022.
 
 ## Requirements
+
 PHP 8.1+, a mysql database and composer is required to run the unit tests.
-  
+
 ## Setup
 
 Framelix uses git submodules. So after cloning you have to initialize the submodules.
@@ -31,7 +32,21 @@ To develop in this library there are 2 modules.
 
 * Framelix - Which is the core itself and integrated as a submodule
 * FramelixTests - The actual test module where all tests live in
-*
+
+## Commit Messages
+
+We have a rule of thumb for commit messages. Each commit message line should begin with an emoji following the type of
+message.
+
+| Emoji | Type | Full message prefix |
+
+| Emoji                   | Type       | Example message prefix                                  | Why this emoji?                                                        |
+|-------------------------|------------|---------------------------------------------------------|------------------------------------------------------------------------|
+| `:wrench:`              | fixed      | :wrench: fixed a bug in xyz                             | A wrench symbol is easily understandable to fix something              |
+| `:heart:`               | added      | :heart: added a new featuer to xyz                      | You show some leave on adding new stuff                                |
+| `:construction_worker:` | refactored | :construction_worker: refactored feature xyz because... | A worker symbol indicate that some work needed to be done              |
+| `:no_entry:`            | removed    | :no_entry: removed xyz because...                       | A remove symbol should speak for itself                                |
+| `:unicorn:`             | misc       | :unicorn: something else that don't fit with prev types | Everyone like unicorns, so use this when you don't know something else |
 
 #### Submodule development
 
