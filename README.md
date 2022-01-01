@@ -40,13 +40,14 @@ message.
 
 | Emoji | Type | Full message prefix |
 
-| Emoji                   | Type       | Example message prefix                                  | Why this emoji?                                                        |
-|-------------------------|------------|---------------------------------------------------------|------------------------------------------------------------------------|
-| `:wrench:`              | fixed      | :wrench: fixed a bug in xyz                             | A wrench symbol is easily understandable to fix something              |
-| `:heart:`               | added      | :heart: added a new featuer to xyz                      | You show some leave on adding new stuff                                |
-| `:construction_worker:` | refactored | :construction_worker: refactored feature xyz because... | A worker symbol indicate that some work needed to be done              |
-| `:no_entry:`            | removed    | :no_entry: removed xyz because...                       | A remove symbol should speak for itself                                |
-| `:unicorn:`             | misc       | :unicorn: something else that don't fit with prev types | Everyone like unicorns, so use this when you don't know something else |
+| Emoji                   | Type             | Example message prefix                                  | Why this emoji?                                                        |
+|-------------------------|------------------|---------------------------------------------------------|------------------------------------------------------------------------|
+| `:wrench:`              | fixed            | :wrench: fixed a bug in xyz                             | A wrench symbol is easily understandable to fix something              |
+| `:heart:`               | added            | :heart: added a new featuer to xyz                      | You show some leave on adding new stuff                                |
+| `:construction_worker:` | refactored       | :construction_worker: refactored feature xyz because... | A worker symbol indicate that some work needed to be done              |
+| `:no_entry:`            | removed          | :no_entry: removed xyz because...                       | A remove symbol should speak for itself                                |
+| `:keyboard:`            | typo/format/info | :keyboard: fixed a few code style errors and typos      | Keyboard icon to show you have hacked in few arbitrary lines           |
+| `:unicorn:`             | rest             | :unicorn: something else that don't fit with prev types | Everyone like unicorns, so use this when you don't know something else |
 
 #### Submodule development
 
