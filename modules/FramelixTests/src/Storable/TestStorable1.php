@@ -2,6 +2,7 @@
 
 namespace Framelix\FramelixTests\Storable;
 
+use Framelix\Framelix\Date;
 use Framelix\Framelix\DateTime;
 use Framelix\Framelix\Db\StorableSchema;
 use Framelix\Framelix\Storable\Storable;
@@ -23,8 +24,8 @@ use Framelix\Framelix\Storable\Storable;
  * @property TestStorable2|null $otherReferenceOptional
  * @property DateTime $dateTime
  * @property DateTime|null $dateTimeOptional
- * @property DateTime $date
- * @property DateTime|null $dateOptional
+ * @property Date $date
+ * @property Date|null $dateOptional
  */
 class TestStorable1 extends Storable
 {

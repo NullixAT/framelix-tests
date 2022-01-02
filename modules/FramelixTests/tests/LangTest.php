@@ -38,7 +38,5 @@ final class LangTest extends TestCase
         $this->assertSame(['en', 'de'], Lang::getSupportedLanguages());
         $this->assertSame(['de', 'en'], Lang::getAllModuleLanguages());
         $this->assertIsArray(Lang::getValuesForSupportedLanguages());
-
-
     }
 }
