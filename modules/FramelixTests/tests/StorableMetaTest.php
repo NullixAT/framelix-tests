@@ -37,8 +37,8 @@ final class StorableMetaTest extends TestCase
         $storable->floatNumber = 6.9;
         $storable->boolFlag = true;
         $storable->jsonData = ['foobar', 1];
-        $storable->dateTime = new DateTime();
-        $storable->date = new DateTime();
+        $storable->dateTime = DateTime::create('now');
+        $storable->date = Date::create('now');
         $storable->store();
         $storableReference = $storable;
 
