@@ -5,6 +5,7 @@ namespace Utils;
 use Framelix\Framelix\DateTime;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Utils\ArrayUtils;
+use Framelix\FramelixTests\Storable\TestStorable2;
 use Framelix\FramelixTests\TestCase;
 use stdClass;
 use Throwable;
@@ -143,6 +144,11 @@ final class ArrayUtilsTest extends TestCase
         $this->assertEquals(["foo"], ArrayUtils::splitKeyString(['foo']));
         $this->assertFalse(ArrayUtils::keyExists(null, "key"));
         $this->assertFalse(ArrayUtils::keyExists([], "key[foo]"));
+
+        $storable = new TestStorable2();
+        $storable->name = "foo";
+        $this->assertSame($storable->name, ArrayUtils::getValue($storable, "name"));
+        $this->assertNull(ArrayUtils::getValue($storable, "nameNotExist"));
     }
 
     public function testExceptionSortFlag()
@@ -165,19 +171,19 @@ final class ArrayUtilsTest extends TestCase
 
     /**
      * Assert equal array
-     * @param $array
-     * @param $expected
+     * @param mixed $array
+     * @param mixed $expected
      */
-    private function assertEqualArray($array, $expected)
+    private function assertEqualArray(mixed $array, mixed $expected): void
     {
         $this->assertEquals($expected, json_encode($array));
     }
 
     /**
      * Stringify array
-     * @param $array
+     * @param mixed $array
      */
-    private function stringifyArray(&$array): void
+    private function stringifyArray(mixed &$array): void
     {
         foreach ($array as $key => $value) {
             $array[$key] = $value instanceof DateTime ? $value->format("Y-m-d H:i:s") : $value;
