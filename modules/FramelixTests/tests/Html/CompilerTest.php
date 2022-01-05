@@ -113,7 +113,7 @@ final class CompilerTest extends TestCase
         $this->assertCount(3, Compiler::getDistMetadata(FRAMELIX_MODULE)["scss"]);
 
         $this->assertStringEndsWith(
-            trim(file_get_contents(__DIR__ . "/../../js/framelix-unit-test-jstest.js")),
+            trim(file_get_contents(__DIR__ . "/../../js/framelix-unit-test-jstest.min.js")),
             trim(file_get_contents($noCompiledFile)),
         );
     }
