@@ -3,6 +3,7 @@
 namespace Network;
 
 use Framelix\Framelix\Config;
+use Framelix\Framelix\Framelix;
 use Framelix\Framelix\Network\Request;
 use Framelix\FramelixTests\TestCase;
 
@@ -33,6 +34,6 @@ final class RequestTest extends TestCase
         $this->assertSame('foobar', Request::getHeader('http_x_browser_url'));
 
         $this->assertFalse(Request::isAsync());
-        $this->assertTrue(Request::isCli());
+        $this->assertTrue(Framelix::isCli());
     }
 }
