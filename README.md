@@ -16,11 +16,11 @@ PHP 8.1+, a mysql database and composer is required to run the unit tests.
 
 ## Setup
 
-Framelix uses git submodules. So after cloning you have to initialize the submodules.
+The Unit Tests requires 2 repositories. This, and the core itself.
 
     git clone https://github.com/NullixAT/framelix-unit-tests.git
     cd framelix-unit-tests
-    git submodule update --init --recursive
+    git clone https://github.com/NullixAT/framelix-core.git modules/Framelix
     composer install
 
 Copy `modules/FramelixTests/config/config-editable-template.php`
