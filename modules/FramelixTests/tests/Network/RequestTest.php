@@ -33,6 +33,9 @@ final class RequestTest extends TestCase
         $this->setSimulatedHeader('HTTP_X_BROWSER_URL', 'foobar');
         $this->assertSame('foobar', Request::getHeader('http_x_browser_url'));
 
+        $this->setSimulatedHeader('HTTP_X_FORWARDED_PROTO', 'https');
+        $this->assertTrue(Request::isHttps());
+
         $this->assertFalse(Request::isAsync());
         $this->assertTrue(Framelix::isCli());
     }

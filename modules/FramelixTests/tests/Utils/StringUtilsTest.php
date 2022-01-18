@@ -26,5 +26,8 @@ final class StringUtilsTest extends TestCase
         $this->assertSame('data="test"', StringUtils::stringify($objTest));
         $this->assertSame(Lang::get('__framelix_yes__'), StringUtils::stringify(true));
         $this->assertSame('some-pretty-string', StringUtils::slugify("some pretty %] string"));
+        $this->assertSame('some prett...', StringUtils::cut("some pretty string", 10, "...", false));
+        $this->assertSame('some...', StringUtils::cut("some pretty string", 10, "...", true));
+        $this->assertSame('some pretty string', StringUtils::cut("some pretty string", 100, "...", true));
     }
 }

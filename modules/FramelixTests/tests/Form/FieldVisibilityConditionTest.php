@@ -93,7 +93,9 @@ final class FieldVisibilityConditionTest extends TestCase
         $this->assertTrue($field->isVisible());
 
         $this->assertIsArray($field->getVisibilityCondition()->jsonSerialize());
+        $this->assertTrue($field->hasVisibilityCondition());
         $field->getVisibilityCondition()->clear();
+        $this->assertFalse($field->hasVisibilityCondition());
 
         $e = null;
         try {

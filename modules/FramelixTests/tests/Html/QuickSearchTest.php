@@ -11,6 +11,6 @@ final class QuickSearchTest extends TestCase
     public function tests(): void
     {
         $quickSearch = new QuickSearch();
-        $this->callMethodsGeneric($quickSearch, ['addOptionField', 'addOptionFields']);
+        $this->callMethodsGeneric($quickSearch, ['addOptionField', 'addOptionFields', 'addOptionsFields']);
     }
 }

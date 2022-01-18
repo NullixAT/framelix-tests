@@ -14,6 +14,7 @@ final class HtmlUtilsTest extends TestCase
     public function tests(): void
     {
         $this->assertSame('&amp;', HtmlUtils::escape('&'));
+        $this->assertSame('&', HtmlUtils::unescape('&amp;'));
         $this->assertSame("&amp;<br />\n", HtmlUtils::escape("&\n", true));
         $this->assertIsString(HtmlUtils::getIncludeTagForUrl(Url::create()->appendPath(".css")));
         $this->assertIsString(HtmlUtils::getIncludeTagForUrl(Url::create()->appendPath(".js")));

@@ -5,6 +5,8 @@ namespace Utils;
 use Framelix\Framelix\Utils\Buffer;
 use PHPUnit\Framework\TestCase;
 
+use function ob_get_level;
+
 final class BufferTest extends TestCase
 {
 

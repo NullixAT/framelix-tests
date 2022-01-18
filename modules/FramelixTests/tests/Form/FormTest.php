@@ -216,6 +216,11 @@ final class FormTest extends TestCase
         $field->setFieldOptionsForStorable(new TestStorable2(), $field->name);
         $form->addField($field);
 
+        $field = new Text();
+        $field->name = 'typedDateArray';
+        $field->setFieldOptionsForStorable(new TestStorable2(), $field->name);
+        $form->addField($field);
+
         $field = new Textarea();
         $field->name = $field::class;
         $form->addField($field);
