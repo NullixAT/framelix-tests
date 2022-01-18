@@ -16,6 +16,7 @@ final class UrlTest extends TestCase
 
         // tests with global vars and generic stuff
         $indexPhp = __DIR__ . "/../public/index.php";
+        touch($indexPhp);
         $fakeUrlStr = 'http://localhost/foobar?param=zar&car=nar';
         $_GET['car'] = "nar";
         $fakeUrl = Url::create($fakeUrlStr);
