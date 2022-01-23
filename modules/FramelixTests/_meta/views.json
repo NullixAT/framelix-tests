@@ -6,7 +6,7 @@
             "customUrl": null,
             "devModeOnly": false,
             "multilanguage": true,
-            "depth": 1,
+            "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": ""
         },
@@ -15,7 +15,7 @@
             "customUrl": null,
             "devModeOnly": false,
             "multilanguage": true,
-            "depth": 3,
+            "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": "\/testbackendview"
         },
@@ -24,7 +24,7 @@
             "customUrl": null,
             "devModeOnly": false,
             "multilanguage": true,
-            "depth": 1,
+            "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": "\/testview"
         },
@@ -33,7 +33,7 @@
             "customUrl": "\/custom",
             "devModeOnly": false,
             "multilanguage": true,
-            "depth": 1,
+            "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": "\/testviewcustomurl"
         },
@@ -42,7 +42,7 @@
             "customUrl": "~^\/regex\/(?<id>[0-9]+)~",
             "devModeOnly": false,
             "multilanguage": true,
-            "depth": 101,
+            "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": "\/testviewregexurl"
         }
