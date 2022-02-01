@@ -31,5 +31,9 @@ final class JsonUtilsTest extends TestCase
         if (file_exists($tmpFile)) {
             unlink($tmpFile);
         }
+
+        $this->assertSame('framelix', JsonUtils::getPackageJson("Framelix")['name']);
+        $this->assertSame('framelix', JsonUtils::getPackageJson("Framelix")['name']);
+        $this->assertSame(null, JsonUtils::getPackageJson(null));
     }
 }
