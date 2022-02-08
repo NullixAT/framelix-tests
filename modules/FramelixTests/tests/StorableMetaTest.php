@@ -24,7 +24,7 @@ final class StorableMetaTest extends TestCase
     public function tests(): void
     {
         // fake lang for coverage
-        Lang::$values['en']['__framelixtests_storable_teststorable2_grid_label_desc__'] = 'foo';
+        Lang::$values['en']['__framelixtests_storable_teststorable2_datetime_label_desc__'] = 'foo';
 
         $this->setupDatabase(true);
         $this->setSimulatedUrl('http://localhost');
@@ -149,10 +149,11 @@ final class StorableMetaTest extends TestCase
         }
         $this->assertFramelixErrorCode(ErrorCode::STORABLE_SORT_CONDITION, $e);
 
+        Buffer::start();
         $this->setSimulatedGetData($meta->jsonSerialize());
-        $jsCall = new JsCall('quicksearch', ['query' => '']);
+        $jsCall = new JsCall('quicksearch', ['query' => 'ALQOADSFJ']);
         TestStorable2::onJsCall($jsCall);
-        $this->assertTrue($jsCall->result === '');
+        $this->assertTrue(str_contains(Buffer::get(), "<div"));
 
         $this->setSimulatedUser(['dev']);
         Buffer::start();

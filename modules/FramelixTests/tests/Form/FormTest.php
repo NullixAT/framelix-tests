@@ -105,21 +105,20 @@ final class FormTest extends TestCase
         $this->assertNotEmpty($form->getSubmittedValues());
         $this->assertNotEmpty($form->getConvertedSubmittedValues());
 
-        $gridField = $form->fields[Grid::class];
-        $gridField->resetConvertedSubmittedValueCache();
-        $this->setSimulatedPostData(
-            [$gridField->name => ['rows' => [['text' => '1'], ['text' => '2']], 'deleted' => [999, 1000]]]
-        );
-        $form->modifyStorablesBasedOnGridValues($gridField->name, $storable);
-
         $this->setSimulatedPostData(
             [
+                $form->id => '1',
+                'name' => '10.12.2020',
+                'floatNumber' => '10,22',
                 'jsonData' => ['rows' => [['text' => '1'], ['text' => '2']]],
                 'date' => '10.12.2020',
+                'dateTime' => '10.12.2020',
                 'otherReferenceOptional' => $storableReference->id
             ]
         );
+        $form->resetConvertedSubmittedValueCache();
         $form->setStorableValues($storable);
+        $form->storeWithFiles($storable);
     }
 
     /**
@@ -162,14 +161,6 @@ final class FormTest extends TestCase
         $field = new File();
         $field->name = $field::class;
         $form->addField($field);
-
-        $field = new Grid();
-        $field->name = $field::class;
-        $form->addField($field);
-
-        $gridField = new Text();
-        $gridField->name = "text";
-        $field->addField($gridField);
 
         $field = new Hidden();
         $field->name = $field::class;

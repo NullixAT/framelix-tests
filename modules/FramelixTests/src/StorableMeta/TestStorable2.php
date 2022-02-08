@@ -87,13 +87,6 @@ class TestStorable2 extends StorableMeta
         $property = $this->createProperty("date");
         $property->addDefaultField();
 
-        $property = $this->createProperty("grid");
-        $property->field = new Grid();
-
-        $field = new Email();
-        $field->name = "foo";
-        $property->field->addField($field);
-
         $property = $this->createProperty("typedFloatArray");
         $property->field = new Select();
         $property->field->multiple = true;
