@@ -26,7 +26,7 @@ final class ConfigTest extends TestCase
         $this->assertFalse(Config::isDevMode());
         $this->assertTrue(Config::keyExists('database'));
         $tmpConfigFile = __DIR__ . "/../config/config-test.php";
-        Config::writetConfigToFile(FRAMELIX_MODULE, 'config-test.php', ['foo' => 'data']);
+        Config::writeConfigToFile(FRAMELIX_MODULE, 'config-test.php', ['foo' => 'data']);
         $this->assertFileExists($tmpConfigFile);
         $configData = file_get_contents($tmpConfigFile);
         unlink($tmpConfigFile);
