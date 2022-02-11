@@ -23,7 +23,7 @@ final class LangTest extends TestCase
         $this->assertSame("2 minutes", Lang::get('__framelix_time_minutes__', [2]));
         $this->assertSame("0 minutes", Lang::get('__framelix_time_minutes__', [0]));
         $this->assertSame("0 minutes", Lang::get(['__framelix_time_minutes__', [0]]));
-        Lang::$values['en']['__test__'] = '{{0<2:lt|0<=2:lte|0>3:gt|0>=3:gte}}';
+        Lang::$values['en']['__test__'] = '{{0<2:{0} lt|0<=2:{0} lte|0>3:{0} gt|0>=3:{0} gte}}';
         $this->assertSame("1 lt", Lang::get('__test__', [1]));
         $this->assertSame("2 lte", Lang::get('__test__', [2]));
         $this->assertSame("4 gt", Lang::get('__test__', [4]));
