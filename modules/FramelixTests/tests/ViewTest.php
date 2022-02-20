@@ -17,7 +17,12 @@ final class ViewTest extends TestCase
 {
     public function tests(): void
     {
+        Config::set('applicationHttps', false);
         Config::set('applicationHost', 'localhost');
+        Config::set('applicationUrlBasePath', '');
+        Config::set('languageDefault', 'en');
+        Config::set('languageFallback', 'en');
+        Lang::$lang = "en";
 
         // test getTranslatedPageTitle
         $e = null;

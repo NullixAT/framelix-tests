@@ -9,7 +9,9 @@ final class UrlTest extends TestCase
 {
     public function tests(): void
     {
+        Config::set('applicationHttps', false);
         Config::set('applicationHost', 'localhost');
+        Config::set('applicationUrlBasePath', '');
         Config::set('urlGlobalContextParameterKeys', ['car']);
         Config::set('languageMultiple', true);
         Config::set('languagesSupported', ['de', 'en']);

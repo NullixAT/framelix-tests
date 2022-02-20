@@ -1,5 +1,5 @@
 {
-    "directoryListHash": "1|851160277",
+    "directoryListHash": "1|2826059004",
     "views": {
         "Framelix\\FramelixTests\\View\\Index": {
             "accessRole": "*",
@@ -10,6 +10,15 @@
             "pageTitle": "{classLangKey}",
             "url": ""
         },
+        "Framelix\\FramelixTests\\View\\ModalWindow": {
+            "accessRole": "*",
+            "customUrl": null,
+            "devModeOnly": false,
+            "multilanguage": true,
+            "urlPriority": 0,
+            "pageTitle": "{classLangKey}",
+            "url": "\/modalwindow"
+        },
         "Framelix\\FramelixTests\\View\\TestBackendView": {
             "accessRole": "*",
             "customUrl": null,
@@ -18,6 +27,15 @@
             "urlPriority": 0,
             "pageTitle": "{classLangKey}",
             "url": "\/testbackendview"
+        },
+        "Framelix\\FramelixTests\\View\\TestBackendViewAccessRole": {
+            "accessRole": "rolenotexist",
+            "customUrl": null,
+            "devModeOnly": false,
+            "multilanguage": true,
+            "urlPriority": 0,
+            "pageTitle": "{classLangKey}",
+            "url": "\/testbackendviewaccessrole"
         },
         "Framelix\\FramelixTests\\View\\TestView": {
             "accessRole": "*",

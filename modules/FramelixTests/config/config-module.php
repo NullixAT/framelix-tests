@@ -14,6 +14,7 @@ if (!defined("FRAMELIX_MODULE")) {
         "applicationHttps": false,
         "applicationHost": "localhost",
         "applicationUrlBasePath": "\/",
+        "backendDefaultView": "Framelix\\FramelixTests\\View\\TestBackendView",
         "salts": {
             "general": "jdTbhul2sd3yyaLQPfTFNToE42PcXOCC991SzzKlUrQhS1hhkdTIHufuJ8Sj6XPgd"
         },
