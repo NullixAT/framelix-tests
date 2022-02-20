@@ -28,7 +28,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                 "path": "js",
                                 "recursive": true
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     },
                     "test-path": {
                         "files": [
@@ -37,7 +40,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                 "path": "js/framelix-unit-test-jstest.js",
                                 "recursive": true
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     },
                     "test-path-array": {
                         "files": [
@@ -47,7 +53,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                     "js/framelix-unit-test-jstest.js"
                                 ]
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     },
                     "test-nocompile": {
                         "files": [
@@ -59,7 +68,8 @@ if (!defined("FRAMELIX_MODULE")) {
                             }
                         ],
                         "options": {
-                            "noCompile": true
+                            "noCompile": true,
+                            "noInclude": true
                         }
                     },
                     "test-nocompile-ignorefile": {
@@ -73,6 +83,7 @@ if (!defined("FRAMELIX_MODULE")) {
                             }
                         ],
                         "options": {
+                            "noInclude": true,
                             "noCompile": true
                         }
                     },
@@ -90,7 +101,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                 "path": "scss",
                                 "recursive": true
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     },
                     "test-path": {
                         "files": [
@@ -98,7 +112,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                 "type": "file",
                                 "path": "scss/framelix-unit-test-scsstest.scss"
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     },
                     "test-path-array": {
                         "files": [
@@ -108,7 +125,10 @@ if (!defined("FRAMELIX_MODULE")) {
                                     "scss/framelix-unit-test-scsstest.scss"
                                 ]
                             }
-                        ]
+                        ],
+                        "options": {
+                            "noInclude": true
+                        }
                     }
                 }
             }
