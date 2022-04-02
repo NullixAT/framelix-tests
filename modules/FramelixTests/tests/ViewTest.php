@@ -55,7 +55,7 @@ final class ViewTest extends TestCase
         $this->assertSame('http://localhost/testview', (string)View::getUrl(TestView::class));
         $this->assertSame('http://localhost/custom', (string)View::getUrl(TestViewCustomUrl::class));
         // notice missing regex param result in weird url
-        $this->assertSame('http://localhost/regex/id0-9+', (string)View::getUrl(TestViewRegexUrl::class));
+        $this->assertSame('http://localhost/regex/', (string)View::getUrl(TestViewRegexUrl::class));
         $this->assertSame('http://localhost/regex/12', (string)View::getUrl(TestViewRegexUrl::class, ['id' => 12]));
         // test url multilanguage
         Config::set('languageMultiple', true);
