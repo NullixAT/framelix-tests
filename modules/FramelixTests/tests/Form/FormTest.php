@@ -83,9 +83,9 @@ final class FormTest extends TestCase
         $form = $this->getFormWithAllFields();
 
         $this->assertFalse(Form::isFormSubmitted($form->id));
-        $this->setSimulatedGetData([$form->id => '1']);
+        $this->setSimulatedGetData(["framelix-form-" . $form->id => '1']);
         $this->assertTrue(Form::isFormSubmitted($form->id));
-        $this->setSimulatedPostData([$form->id => '1']);
+        $this->setSimulatedPostData(["framelix-form-" . $form->id => '1']);
         $this->assertTrue(Form::isFormSubmitted($form->id));
 
         Buffer::start();
