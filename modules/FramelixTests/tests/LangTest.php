@@ -8,6 +8,7 @@ final class LangTest extends TestCase
 {
     public function tests(): void
     {
+        Lang::addValuesForModule("Framelix", true);
         Lang::$lang = "en";
         $this->assertSame(null, Lang::getLanguageByBrowserSettings());
         Config::set('languageFallback', 'de');
@@ -33,10 +34,13 @@ final class LangTest extends TestCase
         $this->assertSame('en', Lang::getLanguageByBrowserSettings());
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = "ru-RU";
         $this->assertSame(null, Lang::getLanguageByBrowserSettings());
-        $this->assertSame(['en'], Lang::getSupportedLanguages());
         Config::set('languageMultiple', true);
-        $this->assertSame(['en', 'de'], Lang::getSupportedLanguages());
+        $this->assertSame(['en', 'de'], Lang::getEnabledLanguages());
         $this->assertSame(['de', 'en'], Lang::getAllModuleLanguages());
-        $this->assertIsArray(Lang::getValuesForSupportedLanguages());
+
+        $this->assertSame("__framelix_test__", Lang::concatKeys("__framelix__", "test"));
+        $this->assertSame("__unknown__", Lang::get("__unknown__"));
+        Lang::set("__unknown__", "foobar");
+        $this->assertSame("foobar", Lang::get("__unknown__"));
     }
 }
