@@ -5,9 +5,7 @@ namespace Utils;
 use Framelix\Framelix\ErrorCode;
 use Framelix\Framelix\Utils\FileUtils;
 use Framelix\Framelix\Utils\Tar;
-use Framelix\Framelix\Utils\Zip;
 use Framelix\FramelixTests\TestCase;
-use Phar;
 use Throwable;
 
 final class TarTest extends TestCase
@@ -15,7 +13,7 @@ final class TarTest extends TestCase
     public function tests(): void
     {
         $tarFile = __DIR__ . "/../../tmp/test.tar";
-        $tarCreateFile = __DIR__ . "/../../tmp/tartest/test.zip";
+        $tarCreateFile = __DIR__ . "/../../tmp/tartest/test.tar";
         $tmpFolder = __DIR__ . "/../../tmp/tartest";
         $packFolder = __DIR__ . "/../../tmp/fileutils-test";
         FileUtils::deleteDirectory($tmpFolder);
@@ -78,7 +76,7 @@ final class TarTest extends TestCase
             'modules/FramelixTests/tmp/tartest/.gitignore',
             'modules/FramelixTests/tmp/tartest/sub/test1',
             'modules/FramelixTests/tmp/tartest/sub/test1.txt',
-            'modules/FramelixTests/tmp/tartest/test.zip',
+            'modules/FramelixTests/tmp/tartest/test.tar',
             'modules/FramelixTests/tmp/tartest/test1',
             'modules/FramelixTests/tmp/tartest/test1.txt'
         ], $tmpFolder);
