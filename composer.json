@@ -6,5 +6,8 @@
     "phpunit/phpunit": "^9.5",
     "phpstan/phpstan": "1.4.6",
     "jetbrains/phpstorm-attributes": "^1.0"
+  },
+  "require": {
+    "ext-mysqli": "*"
   }
 }

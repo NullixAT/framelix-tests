@@ -1,0 +1,1 @@
+docker-compose exec phpfpm bash -c "cd /framelix && php composer.phar run phpstan"
