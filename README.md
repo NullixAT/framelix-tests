@@ -34,6 +34,6 @@ sh app/phpunit.sh
 
 ## Configure PHPStorm IDE to use docker to run tests
 
-* [CLI Interpreter Settings](docs/phpstorm-cli.png)
-* [Test Framework Settings](docs/phpstorm-testframeworks.png)
-* [Run a single test or multiple tests](docs/phpstorm-run-test.png)
+* [CLI Interpreter Settings](https://raw.githubusercontent.com/NullixAT/framelix-tests/main/docs/phpstorm-cli.png)
+* [Test Framework Settings](https://raw.githubusercontent.com/NullixAT/framelix-tests/main/docs/phpstorm-testframeworks.png)
+* [Run a single test or multiple tests](https://raw.githubusercontent.com/NullixAT/framelix-tests/main/docs/phpstorm-run-test.png)
