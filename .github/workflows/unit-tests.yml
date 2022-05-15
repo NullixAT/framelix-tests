@@ -33,9 +33,8 @@ jobs:
 
       - name: Setup Composer inside docker
         run: |
-          export COMPOSE_INTERACTIVE_NO_CLI=1
-          docker-compose exec phpfpm bash -c "cd /framelix && sh composer-setup.sh" 
-          docker-compose exec phpfpm bash -c "cd /framelix && php composer.phar install"
+          docker-compose exec -T phpfpm bash -c "cd /framelix && sh composer-setup.sh" 
+          docker-compose exec -T phpfpm bash -c "cd /framelix && php composer.phar install"
 
       - name: Run Unit Tests
         run: sh app/phpunit.sh
