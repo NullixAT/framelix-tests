@@ -8,6 +8,7 @@
     "jetbrains/phpstorm-attributes": "^1.0"
   },
   "require": {
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "ext-simplexml": "*"
   }
 }

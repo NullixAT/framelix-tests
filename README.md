@@ -14,7 +14,6 @@ cd framelix-tests
 cp config/env-default .env
 git clone https://github.com/NullixAT/framelix-tests.git app
 git clone https://github.com/NullixAT/framelix-core.git app/modules/Framelix
-cp app/modules/FramelixTests/config/config-editable-local.php app/modules/FramelixTests/config/config-editable.php
 docker-compose up -d --build
 docker-compose exec phpfpm bash -c "cd /framelix && sh composer-setup.sh"
 docker-compose exec phpfpm bash -c "cd /framelix && php composer.phar install"
