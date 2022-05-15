@@ -8,7 +8,6 @@ parameters:
     - modules/Framelix/vendor
   bootstrapFiles:
     - modules/FramelixTests/public/index.php
-    - modules/Framelix/public/check-requirements.php
   checkMissingIterableValueType: false
   reportUnmatchedIgnoredErrors: false
   ignoreErrors:
