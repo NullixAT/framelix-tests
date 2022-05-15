@@ -26,7 +26,10 @@ jobs:
           path: app/modules/Framelix
 
       - name: Setup environment
-        run: cp config/env-default .env
+        run: |
+          cp config/env-default .env
+          chmod 0777 app/phpunit.sh
+          chmod 0777 app/phpstan.sh
 
       - name: Start docker containers
         run: docker-compose up -d --build
@@ -37,7 +40,7 @@ jobs:
           docker-compose exec -T phpfpm bash -c "cd /framelix && php composer.phar install"
 
       - name: Run Unit Tests
-        run: sh app/phpunit.sh
+        run: ./app/phpunit.sh
 
       - name: Set Unit Test Coverage ENV
         run: php hooks/after-phpunit.php
@@ -53,7 +56,7 @@ jobs:
           color: orange
 
       - name: Run PhpStan Static Analysis
-        run: sh app/phpstan.sh
+        run: ./app/phpstan.sh
 
       - name: Stop containers
         if: always()
