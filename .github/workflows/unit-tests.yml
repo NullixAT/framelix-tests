@@ -28,8 +28,7 @@ jobs:
       - name: Setup environment
         run: |
           cp config/env-default .env
-          chmod 0777 app/phpunit.sh
-          chmod 0777 app/phpstan.sh
+          chmod -R 0777 app
 
       - name: Start docker containers
         run: docker-compose up -d --build
