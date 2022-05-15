@@ -50,8 +50,7 @@ jobs:
         run: cd modules/Framelix && npm install
 
       - name: Copy Config for Github Actions
-        run: |
-          php -r "file_exists('modules/FramelixTests/config/config-editable.php') || copy('modules/FramelixTests/config/config-editable-github-actions.php', 'modules/FramelixTests/config/config-editable.php');"
+        run: cp modules/FramelixTests/config/config-editable-github-actions.php modules/FramelixTests/config/config-editable.php
 
       - name: Update Composer
         run: sudo composer self-update --no-interaction
