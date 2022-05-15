@@ -28,7 +28,6 @@ jobs:
       - name: Setup environment
         run: |
           cp config/env-default .env
-          chmod -R 0777 app
 
       - name: Start docker containers
         run: docker-compose up -d --build
