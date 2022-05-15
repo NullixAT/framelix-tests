@@ -1,4 +1,4 @@
-name: Framelix Unit Tests
+name: Unit Tests
 on:
   push:
   pull_request:
@@ -7,38 +7,60 @@ on:
 jobs:
   framelix-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system: [ 'ubuntu-latest' ]
+        php-versions: [ '8.1' ]
+        phpunit-versions: [ 'latest' ]
+        include:
+          - operating-system: 'ubuntu-latest'
+            php-versions: '8.1'
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_DATABASE: test_database
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: rootpass
+          MYSQL_ROOT_PASSWORD: rootpass
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Checkout framelix-docker repository
+      - name: Checkout test repository
         uses: actions/checkout@v2
-        with:
-          repository: NullixAT/framelix-docker
 
-      - name: Checkout framelix-tests repository
-        uses: actions/checkout@v2
-        with:
-          repository: NullixAT/framelix-tests
-          path: app
-
-      - name: Checkout framelix-core repository
+      - name: Checkout core repository
         uses: actions/checkout@v2
         with:
           repository: NullixAT/framelix-core
-          path: app/modules/Framelix
+          path: modules/Framelix
 
-      - name: Setup environment
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, exif, fileinfo, mysqli, sockets, json, curl, simplexml,zip, openssl
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+
+      - name: NPM Install
+        run: cd modules/Framelix && npm install
+
+      - name: Copy Config for Github Actions
         run: |
-          cp config/env-default .env
+          php -r "file_exists('modules/FramelixTests/config/config-editable.php') || copy('modules/FramelixTests/config/config-editable-github-actions.php', 'modules/FramelixTests/config/config-editable.php');"
 
-      - name: Start docker containers
-        run: docker-compose up -d --build
+      - name: Update Composer
+        run: sudo composer self-update --no-interaction
 
-      - name: Setup Composer inside docker
-        run: |
-          docker-compose exec -T phpfpm bash -c "cd /framelix && sh composer-setup.sh" 
-          docker-compose exec -T phpfpm bash -c "cd /framelix && php composer.phar install"
+      - name: Run Composer Install
+        run: composer install --no-interaction
 
       - name: Run Unit Tests
-        run: ./app/phpunit.sh
+        run: vendor/bin/phpunit --coverage-clover clover.xml  --bootstrap modules/FramelixTests/tests/_bootstrap.php --configuration modules/FramelixTests/tests/_phpunit.xml
 
       - name: Set Unit Test Coverage ENV
         run: php hooks/after-phpunit.php
@@ -52,10 +74,5 @@ jobs:
           label: CodeCoverage
           message: ${{ env.COVERAGE }}
           color: orange
-
       - name: Run PhpStan Static Analysis
-        run: ./app/phpstan.sh
-
-      - name: Stop containers
-        if: always()
-        run: docker-compose down
+        run: vendor/bin/phpstan analyse --memory-limit 1G
