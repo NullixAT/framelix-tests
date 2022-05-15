@@ -1,1 +1,1 @@
-docker-compose exec phpfpm bash -c "cd /framelix && php composer.phar run phpstan"
+docker-compose exec -T phpfpm bash -c "cd /framelix && php composer.phar run phpstan"
