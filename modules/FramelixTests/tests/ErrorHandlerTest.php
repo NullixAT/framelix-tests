@@ -60,14 +60,6 @@ final class ErrorHandlerTest extends TestCase
         );
         $this->assertTrue(str_contains(Buffer::get(), '<pre'));
 
-        // testing html show exception log
-        Buffer::start();
-        ErrorHandler::showErrorFromExceptionLog(
-            ErrorHandler::throwableToJson($testException),
-            true
-        );
-        $this->assertTrue(str_contains(Buffer::get(), 'phpstorm://open'));
-
         // testing log to disk
         $logDir = FRAMELIX_APP_ROOT . "/logs";
         $logFiles = FileUtils::getFiles($logDir, "~\.php$~");
